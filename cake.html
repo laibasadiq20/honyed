@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Honeyed Bakery - Cakes</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <style>
+    body { 
+      font-family: 'Josefin Sans', sans-serif; 
+      scroll-behavior: smooth;
+    }
+    h1,h2,.logo-text { font-family: 'Great Vibes', cursive; }
+    
+    h3,.product-card h3 {
+      font-family: 'Josefin Sans', sans-serif; 
+      font-weight: 600;
+    }
+    /* Custom animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    @keyframes wiggle {
+      0%, 7% { transform: rotateZ(0); }
+      15% { transform: rotateZ(-10deg); }
+      20% { transform: rotateZ(8deg); }
+      25% { transform: rotateZ(-6deg); }
+      30% { transform: rotateZ(4deg); }
+      35% { transform: rotateZ(-2deg); }
+      40%, 100% { transform: rotateZ(0); }
+    }
+    
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .slide-in {
+      animation: slideIn 0.5s ease-out forwards;
+    }
+    
+    .pulse-animation {
+      animation: pulse 0.5s ease-in-out;
+    }
+    
+    .floating-cart {
+      animation: bounce 4s infinite;
+    }
+    
+    .wiggle {
+      animation: wiggle 0.8s ease-in-out;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #fde2e4;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #f28c82;
+      border-radius: 4px;
+    }
+    
+    /* Product card hover effect */
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Floating cart button */
+    .floating-cart {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .floating-cart:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #4ade80;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    /* Loading animation for images */
+    .image-container {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .image-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      z-index: 1;
+    }
+    
+    .image-container.loaded::before {
+      display: none;
+    }
+    
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    
+    /* Carousel Styles */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 20px;
+      padding: 0 20px;
+    }
+    
+    .carousel-slide {
+      flex: 0 0 300px;
+      position: relative;
+    }
+    
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .carousel-nav:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .carousel-nav.prev {
+      left: 10px;
+    }
+    
+    .carousel-nav.next {
+      right: 10px;
+    }
+    
+    .carousel-nav:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    /* Cake Modal */
+    .cake-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .cake-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.7);
+      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cake-modal.active .modal-content {
+      transform: scale(1);
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 1.5rem;
+      color: #9d174d;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-close:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+    
+    .modal-body {
+      padding: 30px;
+    }
+    
+    .modal-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .modal-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #9d174d;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .modal-description {
+      font-size: 1rem;
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .modal-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #9d174d;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    
+    .quantity-btn:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+    
+    .quantity-btn:last-child {
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .quantity-input {
+      width: 60px;
+      height: 40px;
+      border: 1px solid #e5e7eb;
+      border-left: none;
+      border-right: none;
+      text-align: center;
+      font-family: inherit;
+      font-size: 1.1rem;
+    }
+    
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .modal-btn {
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .modal-btn-primary {
+      background: #9d174d;
+      color: white;
+      border: none;
+    }
+    
+    .modal-btn-primary:hover {
+      background: #831843;
+      transform: translateY(-2px);
+    }
+    
+    .modal-btn-secondary {
+      background: white;
+      color: #9d174d;
+      border: 2px solid #9d174d;
+    }
+    
+    .modal-btn-secondary:hover {
+      background: #fdf2f8;
+    }
+    
+    /* Cake icon button */
+    .cake-icon-btn {
+      background: #f8bbd9;
+      color: #9d174d;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+    
+    .cake-icon-btn:hover {
+      background: #9d174d;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    /* Enhanced Cart Styles */
+    .tooltip {
+      visibility: hidden;
+      width: 120px;
+      background-color: #555;
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+    
+    .group:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .cart-preview {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      width: 400px; /* Increased size */
+      right: 0;
+      bottom: 80px;
+    }
+    
+    .group.active .cart-preview {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+      z-index: 1000;
+    }
+    
+    .cart-item {
+      transition: all 0.3s ease;
+    }
+    
+    .cart-item-remove {
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .cart-item:hover .cart-item-remove {
+      opacity: 1;
+    }
+    
+    .empty-cart-message {
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 250px;
+      }
+      
+      .modal-content {
+        width: 95%;
+        padding: 15px;
+      }
+      
+      .modal-body {
+        padding: 20px;
+      }
+      
+      .modal-image {
+        height: 200px;
+      }
+      
+      .modal-title {
+        font-size: 1.7rem;
+      }
+      
+      .modal-actions {
+        flex-direction: column;
+      }
+      
+      .modal-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .cart-preview {
+        width: 320px; /* Slightly smaller on mobile */
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-[#f3d9fa] via-[#fde2e4] to-[#fff3b0] min-h-screen">
+
+<!-- ======= MOBILE MENU ======= -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-2xl">
+  <div class="p-6">
+    <div class="flex justify-between items-center mb-8">
+      <div class="flex items-center">
+        <i class="bx bx-cake text-3xl text-pink-600"></i>
+        <span class="text-xl font-bold text-pink-600 ml-2">HONEYED</span>
+      </div>
+      <button id="close-menu" class="text-3xl text-gray-700">
+        <i class='bx bx-x'></i>
+      </button>
+    </div>
+    
+    <nav class="flex flex-col space-y-6 uppercase font-semibold">
+      <a href="main.html" class="py-2 border-b border-gray-100 hover:text-pink-600 transition-colors">Home</a>
+      <a href="cake.html" class="py-2 border-b border-gray-100 text-pink-600">Cakes</a>
+      <a href="cupcakes.html" class="py-2 border-b border-gray-100 hover:text-pink-600 transition-colors">Cupcakes</a>
+      <a href="cakepop.html" class="py-2 border-b border-gray-100 hover:text-pink-600 transition-colors">Cake Pops</a>
+      <a href="macarons.html" class="py-2 border-b border-gray-100 hover:text-pink-600 transition-colors">Macarons</a>
+      <a href="specialDeals.html" class="py-2 border-b border-gray-100 hover:text-pink-600 transition-colors">Deals</a>
+      <a href="Cart.html" class="py-2 border-b border-gray-100 hover:text-pink-600 transition-colors">Cart</a>
+    </nav>
+    
+    <div class="mt-8 pt-8 border-t border-gray-200">
+      <h3 class="font-semibold mb-4">Contact Info</h3>
+      <p class="flex items-center text-sm mb-2"><i class='bx bx-phone mr-2'></i> 03223871813</p>
+      <p class="flex items-center text-sm"><i class='bx bx-envelope mr-2'></i> hello@honeyedbakery.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======= HEADER ======= -->
+<header class="fixed top-0 left-0 w-full z-40 text-black">
+  <div class="relative backdrop-blur-md shadow-md bg-white/80">
+    <div class="flex justify-between items-center px-6 py-4">
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="text-3xl md:hidden">
+        <i class='bx bx-menu'></i>
+      </button>
+
+      <!-- Logo -->
+      <div class="flex items-center">
+        <i class="bx bx-cake text-3xl text-pink-600"></i>
+        <span class="text-xl font-bold text-pink-600 ml-2">HONEYED</span>
+      </div>
+
+      <!-- Nav Links (Cart removed from navigation) -->
+      <nav class="hidden md:flex gap-6 uppercase font-semibold text-sm">
+        <a href="main.html" class="hover:text-pink-600 transition-colors">Home</a>
+        <a href="cake.html" class="text-pink-600 border-b-2 border-pink-500">Cakes</a>
+        <a href="cupcakes.html" class="hover:text-pink-600 transition-colors">Cupcakes</a>
+        <a href="cakepop.html" class="hover:text-pink-600 transition-colors">Cake Pops</a>
+        <a href="macarons.html" class="hover:text-pink-600 transition-colors">Macarons</a>
+        <a href="specialDeals.html" class="hover:text-pink-600 transition-colors">Deals</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ======= TOAST NOTIFICATION ======= -->
+<div id="toast" class="toast">
+  <div class="flex items-center">
+    <i class='bx bx-check-circle text-xl mr-2'></i>
+    <span id="toast-message">Successfully added to cart !</span>
+  </div>
+</div>
+
+<!-- ======= ENHANCED FLOATING CART ======= -->
+<div class="fixed bottom-6 right-6 z-30">
+  <div class="relative group" id="floating-cart-container">
+    <button id="floating-cart-button"
+       class="relative floating-cart group bg-gradient-to-br from-white to-pink-50 text-pink-600 p-3 rounded-full shadow-lg ring-2 ring-pink-300 hover:bg-gradient-to-br hover:from-pink-600 hover:to-purple-600 hover:text-white hover:shadow-2xl transition-all duration-300 hover:ring-pink-500 flex items-center justify-center w-14 h-14">
+      <!-- Cake Icon - Now properly centered -->
+      <i class='bx bx-cake text-2xl group-hover:scale-110 transform transition-transform duration-300'></i>
+
+      <!-- Cart Count Badge -->
+      <span id="floating-cart-count"
+            class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shadow-md cart-badge-pulse">
+        0
+      </span>
+      
+      <!-- Tooltip -->
+      <div class="tooltip">View Cart</div>
+    </button>
+    
+    <!-- Cart Preview -->
+    <div class="cart-preview absolute bg-white rounded-xl shadow-xl p-4 border border-pink-200">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold text-lg text-pink-700 flex items-center">
+          <i class='bx bx-cart-alt mr-2'></i> Your Cart
+          <span id="cart-preview-count" class="ml-2 bg-pink-100 text-pink-700 rounded-full px-2 py-1 text-sm">0 items</span>
+        </h3>
+        <button id="close-cart-preview" class="text-gray-500 hover:text-gray-700">
+          <i class='bx bx-x text-xl'></i>
+        </button>
+      </div>
+      
+      <div id="cart-items-container" class="max-h-60 overflow-y-auto mb-3">
+        <!-- Empty cart message -->
+        <div id="empty-cart-message" class="empty-cart-message text-center py-4 text-gray-500">
+          <i class='bx bx-cart text-4xl mb-2 opacity-50'></i>
+          <p>Your cart is empty</p>
+        </div>
+        
+        <!-- Cart items will be added here dynamically -->
+      </div>
+      
+      <div class="border-t border-gray-200 pt-3">
+        <div class="flex justify-between font-semibold text-lg mb-3">
+          <span>Total:</span>
+          <span id="cart-total">Rs 0.00</span>
+        </div>
+        <button id="checkout-btn" class="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 rounded-lg font-medium hover:from-pink-600 hover:to-purple-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= HERO SECTION ======= -->
+<section class="pt-24 pb-12 px-6 max-w-6xl mx-auto text-center">
+  <h1 class="text-5xl md:text-6xl text-pink-700 mb-4 fade-in">Our Cakes</h1>
+  <p class="text-lg text-gray-700 max-w-2xl mx-auto fade-in">Delicious, moist cakes crafted with love and premium ingredients. Each cake is a masterpiece of flavor and artistry.</p>
+</section>
+
+<!-- ======= CAKE CAROUSEL SECTION ======= -->
+<section class="py-8 px-6 max-w-6xl mx-auto">
+  
+  <div class="carousel-container">
+    <button class="carousel-nav prev">
+      <i class='bx bx-chevron-left text-2xl text-pink-600'></i>
+    </button>
+    
+    <div class="carousel-track" id="cake-carousel">
+      <!-- Cake 1 - Three Milk Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="7" data-name="Three Milk Cake" data-price="2200" data-image="3milk.webp" data-description="A traditional Latin American dessert featuring a sponge cake soaked in three kinds of milk: evaporated milk, condensed milk, and heavy cream. Topped with whipped cream and fresh fruit.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="3milk.webp"
+                 alt="Three Milk Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Three Milk Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star-half'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(142 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="font-bold text-gray-800 text-lg">Rs 2,200</span>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cake 2 - Belgium Chocolate Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="8" data-name="Belgium Chocolate Cake" data-price="2500" data-image="Belgium.png" data-description="Made with premium Belgian chocolate, this decadent cake features multiple layers of moist chocolate sponge, rich chocolate ganache, and a smooth chocolate buttercream. A true chocolate lover's dream.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="Belgium.png"
+                 alt="Belgium Chocolate Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <span class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Bestseller</span>
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Belgium Chocolate Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(189 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="font-bold text-gray-800 text-lg">Rs 2,500</span>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cake 3 - Red Velvet Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="9" data-name="Red Velvet Cake" data-price="2200" data-image="Red-Velvet-Cake.png" data-description="Our signature red velvet cake with its distinctive vibrant color and subtle cocoa flavor, layered with rich cream cheese frosting. Perfect for celebrations and special occasions.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="Red-Velvet-Cake.png"
+                 alt="Red Velvet Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <span class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Popular</span>
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Red Velvet Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(167 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="font-bold text-gray-800 text-lg">Rs 2,200</span>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cake 4 - Louis Cream Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="10" data-name="Louis Cream Cake" data-price="2300" data-image="Lotus-Cake.png" data-description="A delicate sponge cake layered with light whipped cream and fresh seasonal fruits. This elegant cake is perfect for those who prefer a less sweet but equally indulgent dessert.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="Lotus-Cake.png"
+                 alt="Louis Cream Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <span class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">New</span>
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Louis Cream Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bx-star'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(93 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="font-bold text-gray-800 text-lg">Rs 2,300</span>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cake 5 - Chocolate Fudge Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="11" data-name="Chocolate Fudge Cake" data-price="1800" data-image="Chocolate-Fudge-Cake.png" data-description="An intensely rich and moist chocolate cake with layers of fudgy chocolate frosting. This classic favorite is perfect for birthdays, celebrations, or any chocolate craving.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="Chocolate-Fudge-Cake.png"
+                 alt="Chocolate Fudge Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Chocolate Fudge Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star-half'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(156 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <div>
+                <span class="font-bold text-gray-800 text-lg">Rs 1,800</span>
+                <span class="text-gray-400 text-sm line-through ml-2">Rs 2,000</span>
+              </div>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cake 6 - Caramel Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="12" data-name="Caramel Cake" data-price="2100" data-image="caramal.jpeg" data-description="A buttery vanilla cake layered with smooth, rich caramel frosting. The perfect balance of sweet and salty flavors that will satisfy any caramel lover's cravings.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="caramal.jpeg"
+                 alt="Caramel Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Caramel Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bx-star'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(124 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="font-bold text-gray-800 text-lg">Rs 2,100</span>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Cake 7 - Pistachio Chocolate Cake -->
+      <div class="carousel-slide">
+        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" data-id="13" data-name="Pistachio Chocolate Cake" data-price="2600" data-image="Pistachio.jpg" data-description="A unique combination of rich chocolate and nutty pistachio flavors. This cake features layers of chocolate sponge, pistachio cream, and is topped with crushed pistachios for added texture.">
+          <div class="relative overflow-hidden image-container h-56">
+            <img src="Pistachio.jpg"
+                 alt="Pistachio Chocolate Cake" class="h-full w-full object-cover"
+                 onload="this.parentElement.classList.add('loaded')">
+            <span class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">Seasonal</span>
+            <button class="absolute top-4 right-4 bg-white/80 text-pink-600 p-2 rounded-full hover:bg-white transition">
+              <i class='bx bx-heart'></i>
+            </button>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-semibold text-pink-700">Pistachio Chocolate Cake</h3>
+            <div class="flex items-center mt-1">
+              <div class="flex text-yellow-400">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+              </div>
+              <span class="text-gray-500 text-sm ml-2">(138 reviews)</span>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="font-bold text-gray-800 text-lg">Rs 2,600</span>
+              <button class="cake-icon-btn open-cake-modal">
+                <i class='bx bx-cake'></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="carousel-nav next">
+      <i class='bx bx-chevron-right text-2xl text-pink-600'></i>
+    </button>
+  </div>
+</section>
+
+<!-- ======= CAKE MODAL ======= -->
+<div id="cake-modal" class="cake-modal">
+  <div class="modal-content">
+    <button class="modal-close">
+      <i class='bx bx-x'></i>
+    </button>
+    <div class="modal-body">
+      <img id="modal-image" src="" alt="Cake" class="modal-image">
+      <h2 id="modal-title" class="modal-title">Cake Title</h2>
+      <p id="modal-description" class="modal-description">Cake description goes here.</p>
+      <div id="modal-price" class="modal-price">Rs</div>
+      <div class="quantity-selector">
+        <button class="quantity-btn minus">-</button>
+        <input type="number" class="quantity-input" value="1" min="1">
+        <button class="quantity-btn plus">+</button>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-primary add-to-cart-modal">
+          <i class='bx bx-cart'></i>
+          Add to Cart
+        </button>
+        <button class="modal-btn modal-btn-secondary wishlist-btn">
+          <i class='bx bx-heart'></i>
+          Add to Wishlist
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= FOOTER ======= -->
+<footer id="contact" class="bg-gradient-to-r from-[#f28c82] to-[#d45b66] text-yellow-50 py-12 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- About -->
+    <div>
+      <h3 class="text-lg font-bold mb-4">Honeyed Bakery</h3>
+      <p class="mb-4">Crafting delicious, artisanal baked goods with love since 2010.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-2xl hover:text-white transition"><i class='bx bxl-facebook-circle'></i></a>
+        <a href="#" class="text-2xl hover:text-white transition"><i class='bx bxl-instagram-alt'></i></a>
+        <a href="#" class="text-2xl hover:text-white transition"><i class='bx bxl-pinterest'></i></a>
+        <a href="#" class="text-2xl hover:text-white transition"><i class='bx bxl-tiktok'></i></a>
+      </div>
+    </div>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="main.html" class="hover:text-white transition">Home</a></li>
+        <li><a href="cake.html" class="hover:text-white transition">Cakes</a></li>
+        <li><a href="cupcakes.html" class="hover:text-white transition">Cupcakes</a></li>
+        <li><a href="cakepop.html" class="hover:text-white transition">Cake Pop</a></li>
+        <li><a href="macarons.html" class="hover:text-white transition">Macarons</a></li>
+        <li><a href="specialDeals.html" class="hover:text-white transition">Deals</a></li>
+      </ul>
+    </div>
+    
+    <!-- Customer Service -->
+    <div>
+      <h3 class="text-lg font-bold mb-4">Customer Service</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+      <div class="space-y-2">
+        <p class="flex items-center"><i class='bx bx-phone mr-2'></i> 03223871813</p>
+        <p class="flex items-center"><i class='bx bx-envelope mr-2'></i> hello@honeyedbakery.com</p>
+        <p class="flex items-center"><i class='bx bx-time mr-2'></i> Mon-Sat: 8am-8pm</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="border-t border-pink-300 mt-8 pt-8 text-center max-w-6xl mx-auto px-6">
+    <p>© 2025 Honeyed Bakery – All Rights Reserved</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile Menu Functionality
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const closeMenuButton = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+  });
+  
+  closeMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton) {
+      mobileMenu.classList.remove('active');
+    }
+  });
+  
+  // Cart Functionality
+  let cart = JSON.parse(localStorage.getItem('honeyedBakeryCart')) || [];
+  const floatingCartCount = document.getElementById('floating-cart-count');
+  const cartPreviewCount = document.getElementById('cart-preview-count');
+  const cartItemsContainer = document.getElementById('cart-items-container');
+  const emptyCartMessage = document.getElementById('empty-cart-message');
+  const cartTotal = document.getElementById('cart-total');
+  const checkoutBtn = document.getElementById('checkout-btn');
+  const floatingCartContainer = document.getElementById('floating-cart-container');
+  const floatingCartButton = document.getElementById('floating-cart-button');
+  const closeCartPreview = document.getElementById('close-cart-preview');
+  const toast = document.getElementById('toast');
+  const toastMessage = document.getElementById('toast-message');
+  
+  function updateCartCount() {
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    floatingCartCount.textContent = count;
+    cartPreviewCount.textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
+  }
+  
+  function updateCartTotal() {
+    const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
+    cartTotal.textContent = `Rs ${total.toLocaleString()}`;
+  }
+  
+  function renderCartItems() {
+    cartItemsContainer.innerHTML = '';
+    
+    if (cart.length === 0) {
+      cartItemsContainer.appendChild(emptyCartMessage);
+      emptyCartMessage.classList.remove('hidden');
+      checkoutBtn.disabled = true;
+      return;
+    }
+    
+    emptyCartMessage.classList.add('hidden');
+    checkoutBtn.disabled = false;
+    
+    cart.forEach((item, index) => {
+      const cartItemElement = document.createElement('div');
+      cartItemElement.className = 'cart-item flex items-center justify-between py-2 border-b border-gray-100';
+      cartItemElement.innerHTML = `
+        <div class="flex items-center">
+          <i class='bx bx-cake text-pink-500 mr-2'></i>
+          <div>
+            <div class="font-medium">${item.name}</div>
+            <div class="text-sm text-gray-500">Rs ${parseFloat(item.price).toLocaleString()} x ${item.quantity}</div>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span class="font-semibold mr-3">Rs ${(parseFloat(item.price) * item.quantity).toLocaleString()}</span>
+          <button class="cart-item-remove text-red-500 hover:text-red-700 transition-colors" data-index="${index}">
+            <i class='bx bx-trash'></i>
+          </button>
+        </div>
+      `;
+      
+      cartItemsContainer.appendChild(cartItemElement);
+    });
+    
+    // Add event listeners to remove buttons
+    const removeButtons = document.querySelectorAll('.cart-item-remove');
+    removeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-index'));
+        removeFromCart(index);
+      });
+    });
+  }
+  
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('honeyedBakeryCart', JSON.stringify(cart));
+    updateCartCount();
+    updateCartTotal();
+    renderCartItems();
+    showToast('Item removed from cart!');
+  }
+  
+  function showToast(message) {
+    toastMessage.textContent = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+  
+  function addToCart(id, name, price, quantity = 1) {
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      cart.push({
+        id,
+        name,
+        price,
+        quantity
+      });
+    }
+    
+    localStorage.setItem('honeyedBakeryCart', JSON.stringify(cart));
+    updateCartCount();
+    updateCartTotal();
+    renderCartItems();
+    showToast(`${name} added to cart!`);
+    
+    // Visual feedback
+    createConfetti();
+    animateCartIcon();
+  }
+  
+  function createConfetti() {
+    const colors = ['#ec4899', '#8b5cf6', '#f59e0b', '#10b981', '#3b82f6'];
+    
+    for (let i = 0; i < 15; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.width = Math.random() * 10 + 5 + 'px';
+      confetti.style.height = Math.random() * 10 + 5 + 'px';
+      confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+      
+      document.body.appendChild(confetti);
+      
+      // Animate confetti
+      confetti.style.animation = `confetti ${Math.random() * 3 + 2}s forwards`;
+      
+      // Remove confetti after animation
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
+    }
+  }
+  
+  function animateCartIcon() {
+    floatingCartButton.classList.add('wiggle');
+    setTimeout(() => {
+      floatingCartButton.classList.remove('wiggle');
+    }, 800);
+  }
+  
+  // Floating Cart Toggle
+  floatingCartButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    floatingCartContainer.classList.toggle('active');
+  });
+  
+  closeCartPreview.addEventListener('click', function() {
+    floatingCartContainer.classList.remove('active');
+  });
+  
+  // Close cart when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!floatingCartContainer.contains(e.target)) {
+      floatingCartContainer.classList.remove('active');
+    }
+  });
+  
+  // Checkout button functionality
+  checkoutBtn.addEventListener('click', function() {
+    if (cart.length > 0) {
+      alert(`Thank you for your order! Total: Rs ${cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0).toLocaleString()}`);
+      cart = [];
+      localStorage.setItem('honeyedBakeryCart', JSON.stringify(cart));
+      updateCartCount();
+      updateCartTotal();
+      renderCartItems();
+      floatingCartContainer.classList.remove('active');
+    }
+  });
+  
+  // Initialize cart
+  updateCartCount();
+  updateCartTotal();
+  renderCartItems();
+  
+  // Carousel Functionality
+  const carouselTrack = document.getElementById('cake-carousel');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevButton = document.querySelector('.carousel-nav.prev');
+  const nextButton = document.querySelector('.carousel-nav.next');
+  
+  let currentIndex = 0;
+  const slideWidth = slides[0].getBoundingClientRect().width + 20; // Including gap
+  
+  // Set up the carousel
+  function setupCarousel() {
+    // Clone the first few slides and append to end for infinite effect
+    for (let i = 0; i < 3; i++) {
+      const clone = slides[i].cloneNode(true);
+      carouselTrack.appendChild(clone);
+    }
+    
+    updateCarousel();
+  }
+  
+  function updateCarousel() {
+    carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+  
+  function nextSlide() {
+    currentIndex++;
+    carouselTrack.style.transition = 'transform 0.5s ease';
+    updateCarousel();
+    
+    // If we're at the end of the original slides, reset to beginning seamlessly
+    if (currentIndex >= slides.length) {
+      setTimeout(() => {
+        carouselTrack.style.transition = 'none';
+        currentIndex = 0;
+        updateCarousel();
+      }, 500);
+    }
+  }
+  
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      // If we're at the beginning, jump to the end (clones)
+      currentIndex = slides.length;
+      carouselTrack.style.transition = 'none';
+      updateCarousel();
+      
+      // Then animate back to the last original slide
+      setTimeout(() => {
+        carouselTrack.style.transition = 'transform 0.5s ease';
+        currentIndex = slides.length - 1;
+        updateCarousel();
+      }, 50);
+    }
+    
+    carouselTrack.style.transition = 'transform 0.5s ease';
+    updateCarousel();
+  }
+  
+  // Event listeners for carousel navigation
+  nextButton.addEventListener('click', nextSlide);
+  prevButton.addEventListener('click', prevSlide);
+  
+  // Initialize carousel
+  setupCarousel();
+  
+  // Touch/swipe support for mobile
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  
+  carouselTrack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    carouselTrack.style.transition = 'none';
+  });
+  
+  carouselTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    
+    currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+    
+    // Move the carousel track while dragging
+    carouselTrack.style.transform = `translateX(calc(-${currentIndex * slideWidth}px - ${diff}px))`;
+  });
+  
+  carouselTrack.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    carouselTrack.style.transition = 'transform 0.5s ease';
+    
+    const diff = startX - currentX;
+    const threshold = 50;
+    
+    if (diff > threshold) {
+      nextSlide();
+    } else if (diff < -threshold) {
+      prevSlide();
+    } else {
+      // Not enough movement, return to current position
+      updateCarousel();
+    }
+  });
+  
+  // Cake Modal Functionality
+  const cakeModal = document.getElementById('cake-modal');
+  const modalClose = document.querySelector('.modal-close');
+  const modalImage = document.getElementById('modal-image');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDescription = document.getElementById('modal-description');
+  const modalPrice = document.getElementById('modal-price');
+  const quantityInput = document.querySelector('.quantity-input');
+  const minusBtn = document.querySelector('.quantity-btn.minus');
+  const plusBtn = document.querySelector('.quantity-btn.plus');
+  const addToCartModalBtn = document.querySelector('.add-to-cart-modal');
+  const wishlistBtn = document.querySelector('.wishlist-btn');
+  
+  let currentCakeData = null;
+  
+  // Open modal when clicking on a cake card or cake icon
+  function openModal(card) {
+    // Get cake data from data attributes
+    currentCakeData = {
+      id: card.getAttribute('data-id'),
+      name: card.getAttribute('data-name'),
+      price: card.getAttribute('data-price'),
+      image: card.getAttribute('data-image'),
+      description: card.getAttribute('data-description')
+    };
+    
+    // Populate modal with cake data
+    modalImage.src = currentCakeData.image;
+    modalTitle.textContent = currentCakeData.name;
+    modalDescription.textContent = currentCakeData.description;
+    modalPrice.textContent = `Rs ${parseFloat(currentCakeData.price).toLocaleString()}`;
+    quantityInput.value = 1;
+    
+    // Show modal
+    cakeModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+  
+  // Open modal when clicking on a cake card (excluding heart button)
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Don't open modal if clicking on heart button or cake icon (they have their own handlers)
+      if (e.target.closest('.image-container button') || e.target.closest('.cake-icon-btn')) {
+        return;
+      }
+      openModal(this);
+    });
+  });
+  
+  // Open modal when clicking on cake icon
+  document.querySelectorAll('.cake-icon-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent triggering card click
+      const card = this.closest('.product-card');
+      openModal(card);
+    });
+  });
+  
+  // Close modal
+  modalClose.addEventListener('click', closeModal);
+  
+  // Close modal when clicking outside
+  cakeModal.addEventListener('click', function(e) {
+    if (e.target === cakeModal) {
+      closeModal();
+    }
+  });
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && cakeModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+  
+  function closeModal() {
+    cakeModal.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+  }
+  
+  // Quantity selector functionality in modal
+  minusBtn.addEventListener('click', function() {
+    let value = parseInt(quantityInput.value);
+    if (value > 1) {
+      quantityInput.value = value - 1;
+    }
+  });
+  
+  plusBtn.addEventListener('click', function() {
+    let value = parseInt(quantityInput.value);
+    quantityInput.value = value + 1;
+  });
+  
+  // Add to cart from modal
+  addToCartModalBtn.addEventListener('click', function() {
+    if (currentCakeData) {
+      const quantity = parseInt(quantityInput.value);
+      addToCart(currentCakeData.id, currentCakeData.name, parseFloat(currentCakeData.price), quantity);
+      closeModal();
+    }
+  });
+  
+  // Wishlist functionality
+  wishlistBtn.addEventListener('click', function() {
+    showToast('Added to wishlist!');
+    // In a real implementation, you would add to a wishlist array/localStorage
+  });
+  
+  // Wishlist functionality (heart buttons on cards)
+  document.querySelectorAll('.image-container button').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent triggering card click
+      const icon = this.querySelector('i');
+      
+      if (icon.classList.contains('bx-heart')) {
+        icon.classList.remove('bx-heart');
+        icon.classList.add('bxs-heart', 'text-red-500');
+        showToast('Added to wishlist!');
+      } else {
+        icon.classList.remove('bxs-heart', 'text-red-500');
+        icon.classList.add('bx-heart');
+        showToast('Removed from wishlist!');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

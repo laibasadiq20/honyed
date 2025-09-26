@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Honeyed Bakery - Cakes</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <style>
+    body { font-family: 'Josefin Sans', sans-serif; }
+    h1,h2,h3,.logo-text { font-family: 'Great Vibes', cursive; }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-[#f3d9fa] via-[#fde2e4] to-[#fff3b0]">
+
+<!-- ======= HEADER ======= -->
+<header class="fixed top-0 left-0 w-full z-50 text-black">
+  <div class="backdrop-blur-md shadow-md">
+    <div class="flex justify-between items-center px-6 py-4">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <i class="bx bx-cake text-3xl text-black"></i>
+        <span class="text-xl font-bold ml-1">HONEYED</span>
+      </div>
+
+      <!-- Nav Links -->
+      <nav class="hidden md:flex gap-6 uppercase font-semibold text-sm">
+        <a href="index.html" class="hover:text-pink-900">Home</a>
+        <a href="cakes.html" class="text-pink-700 border-b-2 border-pink-500">Cakes</a>
+        <a href="cupcakes.html" class="hover:text-pink-900">Cupcakes</a>
+        <a href="pastries.html" class="hover:text-pink-900">Pastries</a>
+        <a href="macarons.html" class="hover:text-pink-900">Macarons</a>
+        <a href="account.html" class="hover:text-pink-900">My Account</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ======= CATEGORY SECTION ======= -->
+<section class="pt-28 pb-16 px-6 max-w-6xl mx-auto">
+  <h1 class="text-5xl text-center text-pink-700 mb-6">Our Cakes</h1>
+  <p class="text-center text-gray-700 mb-12">Delicious, moist cakes crafted with love and premium ingredients.</p>
+
+  <!-- Grid of Products -->
+  <div class="grid gap-8 md:grid-cols-3">
+    <!-- Cake Card -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&q=80"
+           alt="Chocolate Cake" class="h-56 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-semibold text-pink-700">Chocolate Fudge Cake</h3>
+        <p class="text-gray-600 mt-1">Rich chocolate layers with silky fudge frosting.</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="font-bold text-gray-800">$18.00</span>
+          <button class="px-4 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- More cakes -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1558021212-51b6ecfa0db9?w=500&q=80"
+           alt="Red Velvet Cake" class="h-56 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-semibold text-pink-700">Red Velvet Cake</h3>
+        <p class="text-gray-600 mt-1">Classic red velvet with cream cheese frosting.</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="font-bold text-gray-800">$20.00</span>
+          <button class="px-4 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1608198093002-ad4e00548407?w=500&q=80"
+           alt="Vanilla Cream Cake" class="h-56 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-semibold text-pink-700">Vanilla Cream Cake</h3>
+        <p class="text-gray-600 mt-1">Light vanilla sponge with whipped cream.</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="font-bold text-gray-800">$16.50</span>
+          <button class="px-4 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="bg-gradient-to-r from-[#f28c82] to-[#d45b66] text-yellow-50 py-8 text-center">
+  <p class="text-lg">© 2025 Honeyed Bakery – All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

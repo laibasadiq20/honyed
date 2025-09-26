@@ -8,16 +8,19 @@
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"/>
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600;700&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"/>
+      rel="stylesheet"
+    />
 
     <style>
       body {
@@ -95,16 +98,260 @@
       .animate-progress {
         animation: progress 3s ease-in-out infinite;
       }
-    </style>
 
+      /* Login Modal Styles */
+      .login-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-modal.active {
+        display: flex;
+      }
+
+      .login-content {
+        background: white;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 450px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        animation: popIn 0.3s ease-out;
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .login-tabs {
+        display: flex;
+        border-bottom: 1px solid #f3d9fa;
+      }
+
+      .login-tab {
+        flex: 1;
+        padding: 15px;
+        text-align: center;
+        background: #fdf2f8;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 600;
+        color: #d45b66;
+      }
+
+      .login-tab.active {
+        background: white;
+        border-bottom: 3px solid #d45b66;
+      }
+
+      .login-form {
+        padding: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #f3d9fa;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border 0.3s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #d45b66;
+        box-shadow: 0 0 0 3px rgba(212, 91, 102, 0.1);
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(to right, #f28c82, #d45b66);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .login-btn:hover {
+        background: linear-gradient(to right, #d45b66, #f28c82);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 91, 102, 0.3);
+      }
+
+      .social-login {
+        text-align: center;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .social-login::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #f3d9fa;
+      }
+
+      .social-login span {
+        background: white;
+        padding: 0 15px;
+        color: #777;
+        font-size: 14px;
+      }
+
+      .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .social-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border: 1px solid #f3d9fa;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .social-btn.google:hover {
+        background: #db4437;
+        color: white;
+        border-color: #db4437;
+      }
+
+      .social-btn.fb:hover {
+        background: #3b5998;
+        color: white;
+        border-color: #3b5998;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #777;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .close-modal:hover {
+        color: #d45b66;
+      }
+
+      /* Reviews Carousel Styles */
+      .reviews-carousel {
+        position: relative;
+        overflow: hidden;
+        padding: 40px 0;
+      }
+      
+      .reviews-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 30px;
+        padding: 0 20px;
+      }
+      
+      .review-card {
+        flex: 0 0 350px;
+        background: linear-gradient(to bottom right, #fff0f7, #fff8e1);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+      }
+      
+      .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      }
+      
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 30px;
+      }
+      
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #f8bbd9;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
+      .carousel-dot.active {
+        background: #d45b66;
+        transform: scale(1.2);
+      }
+      
+      /* Animation for auto-scroll */
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-350px * 3 - 30px * 3)); }
+      }
+      
+      .auto-scroll .reviews-track {
+        animation: scroll 30s linear infinite;
+      }
+      
+      .auto-scroll.paused .reviews-track {
+        animation-play-state: paused;
+      }
+    </style>
   </head>
 
-  <body   class="min-h-screen bg-gradient-to-b from-[#f3d9fa] via-[#fde2e4] to-[#fff3b0]">
+  <body
+    class="min-h-screen bg-gradient-to-b from-[#f3d9fa] via-[#fde2e4] to-[#fff3b0]"
+  >
     <!-- =================== HEADER ==================-->
     <header class="fixed top-0 left-0 w-full z-50 text-black">
       <div class="relative backdrop-blur-md shadow-md">
         <div class="flex justify-between items-center px-6 py-4">
-
           <!-- Left Menu Icon  -->
           <div class="text-3xl md:hidden">
             <i class="bx bx-menu"></i>
@@ -119,7 +366,7 @@
           <!-- Nav Links -->
           <nav
             class="hidden md:flex gap-8 text-sm font-bold uppercase text-black absolute left-1/2 transform -translate-x-1/2"
-            >
+          >
             <a href="#" class="hover:text-pink-900 transition">Home</a>
             <a href="#menu" class="hover:text-pink-900 transition">Menu</a>
             <a href="#about" class="hover:text-pink-900 transition">About Us</a>
@@ -142,8 +389,6 @@
             ></i>
           </div>
         </div>
-
-
       </div>
     </header>
 
@@ -173,7 +418,6 @@
     </section>
 
     <!--=========================  ABOUT SECTION ========================= -->
-
     <section id="about" class="py-20 px-4 md:px-8 relative overflow-hidden">
       <!-- Decorative elements -->
       <div
@@ -288,7 +532,7 @@
                 class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border"
               >
                 <i class="bx bx-leaf text-3xl text-[#d45b66] mb-2"></i>
-                <p class="font-semibold">Oranic Ingredients</p>
+                <p class="font-semibold">Organic Ingredients</p>
               </div>
             </div>
           </div>
@@ -297,11 +541,11 @@
     </section>
 
     <!-- ================= HOW IT WORKS SECTION ================= -->
-
     <section class="bg-pink-100 py-16">
-    <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-6xl mx-auto px-6">
         <h2
-          class="text-3xl md:text-4xl font-bold text-center text-pink-700 mb-12">
+          class="text-3xl md:text-4xl font-bold text-center text-pink-700 mb-12"
+        >
           How it works
         </h2>
 
@@ -424,7 +668,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3 7h13l3 4h2v6a2 2 0 01-2 2h-1a2 2 0 01-2-2H8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"
+                  d="M3 7h13l3 4h2v6a2 2 0 01-2 2h-1a2 2 0 01-2 2H8a2 2 0 01-2 2H5a2 2 0 01-2 2V7z"
                 />
                 <circle cx="7.5" cy="17.5" r="1.5" fill="currentColor" />
                 <circle cx="17.5" cy="17.5" r="1.5" fill="currentColor" />
@@ -471,19 +715,17 @@
           </div>
         </div>
 
-        <!--  Button -->
+        <!-- Button -->
         <div class="text-center mt-12">
-          <a
-            href="#order"
+          <button
+            id="order-button-1"
             class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold rounded-full shadow-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           >
             Start Your Order <i class="bx bx-chevron-right text-xl ml-2"></i>
-          </a>
+          </button>
         </div>
       </div>
     </section>
-
-  
 
     <!-- =========================  MENU SECTION =================================== -->
     <section
@@ -500,7 +742,6 @@
         class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 px-8 md:px-16 relative z-10"
       >
         <!-- Menu Item -->
-
         <div
           class="menu-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition duration-300 hover:-translate-y-2 relative"
         >
@@ -518,11 +759,13 @@
           <p class="text-sm text-gray-600 mt-2">
             Delicious cakes for all occasions
           </p>
-          <button
-            class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-          >
-            View Options
-          </button>
+          <a href="Cake.html">
+            <button
+              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
+            >
+              View Options
+            </button>
+          </a>
         </div>
 
         <div
@@ -539,15 +782,16 @@
             alt="Cupcakes"
           />
           <h3 class="text-xl font-semibold text-[#d45b66]">Cupcakes</h3>
-
           <p class="text-sm text-gray-600 mt-2">
             Sweet mini treats for everyone
           </p>
-          <button
-            class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-          >
-            View Options
-          </button>
+          <a href="cupcakes.html">
+            <button
+              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
+            >
+              View Options
+            </button>
+          </a>
         </div>
 
         <div
@@ -565,11 +809,13 @@
           />
           <h3 class="text-xl font-semibold text-[#d45b66]">Macarons</h3>
           <p class="text-sm text-gray-600 mt-2">Colorful French delicacies</p>
-          <button
-            class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-          >
-            View Options
-          </button>
+          <a href="macarons.html">
+            <button
+              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
+            >
+              View Options
+            </button>
+          </a>
         </div>
 
         <div
@@ -587,11 +833,13 @@
           />
           <h3 class="text-xl font-semibold text-[#d45b66]">Cake Pops</h3>
           <p class="text-sm text-gray-600 mt-2">Fun bite-sized cake treats</p>
-          <button
-            class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-          >
-            View Options
-          </button>
+           <a href="cakepop.html">
+            <button
+              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
+            >
+              View Options
+            </button>
+          </a>
         </div>
 
         <div
@@ -611,23 +859,126 @@
           <p class="text-sm text-gray-600 mt-2">
             Exclusive offers just for you
           </p>
-          <button
-            class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-          >
-            View Offers
-          </button>
+           <a href="specialDeals.html">
+            <button
+              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
+            >
+              View Options
+            </button>
+          </a>
         </div>
       </div>
 
       <div class="mt-12">
-        <a
-          href="#order"
+        <button
+          id="order-button-2"
           class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#f28c82] to-[#d45b66] text-white font-bold rounded-full shadow-lg hover:from-[#d45b66] hover:to-[#f28c82] transition-all duration-300 transform hover:scale-105"
         >
           Place Your Order <i class="bx bx-chevron-right text-xl ml-2"></i>
-        </a>
+        </button>
       </div>
     </section>
+
+    <!-- =======================Login Modal =======================-->
+    <div id="login-modal" class="login-modal">
+      <div class="login-content">
+        <button class="close-modal" id="close-login">
+          <i class="bx bx-x"></i>
+        </button>
+
+        <div class="login-tabs">
+          <div class="login-tab active" data-tab="login">Login</div>
+          <div class="login-tab" data-tab="register">Register</div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-form" id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" placeholder="your@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" />
+          </div>
+
+          <div class="form-group">
+            <button class="login-btn" id="login-submit">Login</button>
+          </div>
+
+          <div class="social-login">
+            <span>Or login with</span>
+            <div class="social-buttons">
+              <button class="social-btn google">
+                <i class="bx bxl-google"></i>
+              </button>
+              <button class="social-btn fb">
+                <i class="bx bxl-facebook"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="text-center text-sm text-gray-600">
+            Don't have an account?
+            <a
+              href="#"
+              class="text-pink-600 font-medium"
+              id="switch-to-register"
+              >Register here</a
+            >
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="login-form hidden" id="register-form">
+          <div class="form-group">
+            <label for="register-name">Full Name</label>
+            <input type="text" id="register-name" placeholder="Your Name" />
+          </div>
+
+          <div class="form-group">
+            <label for="register-email">Email Address</label>
+            <input
+              type="email"
+              id="register-email"
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <input
+              type="password"
+              id="register-password"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-confirm">Confirm Password</label>
+            <input
+              type="password"
+              id="register-confirm"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div class="form-group">
+            <button class="login-btn" id="register-submit">
+              Create Account
+            </button>
+          </div>
+
+          <div class="text-center text-sm text-gray-600">
+            Already have an account?
+            <a href="#" class="text-pink-600 font-medium" id="switch-to-login"
+              >Login here</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- =================== FEEDBACK SECTION =======================-->
     <section class="py-16 px-4 md:px-8 bg-white/80">
@@ -635,83 +986,142 @@
         <h2 class="text-3xl font-bold text-center text-[#d45b66] mb-12">
           What Our Customers Say
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            class="bg-gradient-to-br from-[#fff0f7] to-[#fff8e1] p-6 rounded-2xl shadow-lg"
-          >
-            <div class="flex items-center mb-4">
-              <div
-                class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4"
-              >
-                <i class="bx bxs-quote-left"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold">Sarah M.</h4>
-                <div class="flex text-yellow-400">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
+        
+        <!-- Reviews Carousel -->
+        <div class="reviews-carousel auto-scroll" id="reviews-carousel">
+          <div class="reviews-track" id="reviews-track">
+            <!-- Review 1 -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Sarah M.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
                 </div>
               </div>
+              <p class="text-gray-600">
+                "The best bakery in town! Their red velvet cake is to die for. I
+                order it for every special occasion."
+              </p>
             </div>
-            <p class="text-gray-600">
-              "The best bakery in town! Their red velvet cake is to die for. I
-              order it for every special occasion."
-            </p>
-          </div>
 
-          <div
-            class="bg-gradient-to-br from-[#fff0f7] to-[#fff8e1] p-6 rounded-2xl shadow-lg"
-          >
-            <div class="flex items-center mb-4">
-              <div
-                class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4"
-              >
-                <i class="bx bxs-quote-left"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold">Laiba.</h4>
-                <div class="flex text-yellow-400">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
+            <!-- Review 2 -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Laiba.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
                 </div>
               </div>
+              <p class="text-gray-600">
+                "I'm addicted to their macarons! Perfect texture and just the
+                right amount of sweetness. Highly recommend!"
+              </p>
             </div>
-            <p class="text-gray-600">
-              "I'm addicted to their macarons! Perfect texture and just the
-              right amount of sweetness. Highly recommend!"
-            </p>
-          </div>
 
-          <div
-            class="bg-gradient-to-br from-[#fff0f7] to-[#fff8e1] p-6 rounded-2xl shadow-lg"
-          >
-            <div class="flex items-center mb-4">
-              <div
-                class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4"
-              >
-                <i class="bx bxs-quote-left"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold">Rida.</h4>
-                <div class="flex text-yellow-400">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
+            <!-- Review 3 -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Rida.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
                 </div>
               </div>
+              <p class="text-gray-600">
+                "Ordered a custom birthday cake and it was stunning! Not only
+                beautiful but delicious too. Will definitely order again."
+              </p>
             </div>
-            <p class="text-gray-600">
-              "Ordered a custom birthday cake and it was stunning! Not only
-              beautiful but delicious too. Will definitely order again."
-            </p>
+            
+            <!-- Review 4 -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Ahmed K.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "The Belgium Chocolate Cake is absolutely divine! Rich, moist, and perfectly balanced. My family loved it!"
+              </p>
+            </div>
+            
+            <!-- Review 5 -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Fatima Z.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "I've tried many bakeries, but Honeyed Bakery's Three Milk Cake is exceptional. Light, creamy, and not too sweet!"
+              </p>
+            </div>
+            
+            <!-- Review 6 -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Bilal R.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "The Pistachio Chocolate Cake was the highlight of our dinner party. Unique flavor combination that everyone loved!"
+              </p>
+            </div>
+          </div>
+          
+          <!-- Carousel Controls -->
+          <div class="carousel-controls">
+            <div class="carousel-dot active" data-index="0"></div>
+            <div class="carousel-dot" data-index="1"></div>
+            <div class="carousel-dot" data-index="2"></div>
+            <div class="carousel-dot" data-index="3"></div>
+            <div class="carousel-dot" data-index="4"></div>
+            <div class="carousel-dot" data-index="5"></div>
           </div>
         </div>
       </div>
@@ -760,13 +1170,13 @@
               id="terms"
               class="mr-2 h-5 w-5 text-yellow-500 focus:ring-yellow-300"
             />
-            <label for="terms" class="text-base text-gray-600">
-              I agree to receive marketing emails from Honeyed Bakery
-            </label>
+            <label for="terms" class="text-base text-gray-600"
+              >I agree to receive marketing emails from Honeyed Bakery</label
+            >
           </div>
         </div>
       </div>
-      
+
       <div
         class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 text-center md:text-left relative z-10"
       >
@@ -775,8 +1185,7 @@
           <h3
             class="flex items-center justify-center md:justify-start gap-2 text-2xl font-semibold tracking-wide text-yellow-50"
           >
-            <i class="bx bxs-phone-call text-yellow-300 text-3xl"></i>
-            Contact Us
+            <i class="bx bxs-phone-call text-yellow-300 text-3xl"></i>Contact Us
           </h3>
           <p
             class="text-lg flex items-center justify-center md:justify-start gap-2"
@@ -791,8 +1200,8 @@
           <p
             class="text-lg flex items-center justify-center md:justify-start gap-2"
           >
-            <i class="bx bxs-envelope text-yellow-300 text-xl"></i>
-            hello@honeyedbakery.com
+            <i class="bx bxs-envelope text-yellow-300 text-xl"></i
+            >hello@honeyedbakery.com
           </p>
         </div>
 
@@ -801,8 +1210,8 @@
           <h3
             class="flex items-center justify-center gap-2 text-2xl font-semibold tracking-wide text-yellow-50"
           >
-            <i class="bx bx-time-five text-yellow-300 text-3xl"></i>
-            Opening Hours
+            <i class="bx bx-time-five text-yellow-300 text-3xl"></i>Opening
+            Hours
           </h3>
           <p class="text-lg">Mon – Fri: 8:00 AM – 8:00 PM</p>
           <p class="text-lg">Sat – Sun: 9:00 AM – 6:00 PM</p>
@@ -813,8 +1222,7 @@
           <h3
             class="flex items-center justify-center md:justify-end gap-2 text-2xl font-semibold tracking-wide text-yellow-50"
           >
-            <i class="bx bxs-heart text-yellow-300 text-3xl"></i>
-            Follow Us
+            <i class="bx bxs-heart text-yellow-300 text-3xl"></i>Follow Us
           </h3>
 
           <!-- Social Icons -->
@@ -822,27 +1230,23 @@
             <a
               href="#"
               class="hover:text-yellow-300 transform transition duration-300 hover:scale-125"
-            >
-              <i class="bx bxl-instagram"></i>
-            </a>
+              ><i class="bx bxl-instagram"></i
+            ></a>
             <a
               href="#"
               class="hover:text-yellow-300 transform transition duration-300 hover:scale-125"
-            >
-              <i class="bx bxl-facebook-circle"></i>
-            </a>
+              ><i class="bx bxl-facebook-circle"></i
+            ></a>
             <a
               href="#"
               class="hover:text-yellow-300 transform transition duration-300 hover:scale-125"
-            >
-              <i class="bx bxl-whatsapp"></i>
-            </a>
+              ><i class="bx bxl-whatsapp"></i
+            ></a>
             <a
               href="#"
               class="hover:text-yellow-300 transform transition duration-300 hover:scale-125"
-            >
-              <i class="bx bxl-tiktok"></i>
-            </a>
+              ><i class="bx bxl-tiktok"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -855,5 +1259,267 @@
         Rights Reserved.
       </div>
     </footer>
+
+    <script>
+      // Login Modal Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginModal = document.getElementById("login-modal");
+        const closeLogin = document.getElementById("close-login");
+        const orderButtons = document.querySelectorAll(
+          "#order-button-1, #order-button-2"
+        );
+        const loginTabs = document.querySelectorAll(".login-tab");
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const switchToRegister = document.getElementById("switch-to-register");
+        const switchToLogin = document.getElementById("switch-to-login");
+
+        // Show modal when order buttons are clicked
+        orderButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            loginModal.classList.add("active");
+          });
+        });
+
+        // Close modal
+        closeLogin.addEventListener("click", function () {
+          loginModal.classList.remove("active");
+        });
+
+        // Close modal when clicking outside
+        loginModal.addEventListener("click", function (e) {
+          if (e.target === loginModal) {
+            loginModal.classList.remove("active");
+          }
+        });
+
+        // Tab switching
+        loginTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Remove active class from all tabs
+            loginTabs.forEach((t) => t.classList.remove("active"));
+            // Add active class to clicked tab
+            this.classList.add("active");
+
+            // Show corresponding form
+            const tabType = this.getAttribute("data-tab");
+            if (tabType === "login") {
+              loginForm.classList.remove("hidden");
+              registerForm.classList.add("hidden");
+            } else {
+              loginForm.classList.add("hidden");
+              registerForm.classList.remove("hidden");
+            }
+          });
+        });
+
+        // Switch to register form from login form link
+        switchToRegister.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginTabs.forEach((t) => t.classList.remove("active"));
+          document
+            .querySelector('.login-tab[data-tab="register"]')
+            .classList.add("active");
+          loginForm.classList.add("hidden");
+          registerForm.classList.remove("hidden");
+        });
+
+        // Switch to login form from register form link
+        switchToLogin.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginTabs.forEach((t) => t.classList.remove("active"));
+          document
+            .querySelector('.login-tab[data-tab="login"]')
+            .classList.add("active");
+          registerForm.classList.add("hidden");
+          loginForm.classList.remove("hidden");
+        });
+
+        // Simple form submission (for demo purposes)
+        document
+          .getElementById("login-submit")
+          .addEventListener("click", function () {
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+
+            if (email && password) {
+              alert("Login successful! Redirecting to order page...");
+              loginModal.classList.remove("active");
+              // In a real app, you would redirect to the order page here
+            } else {
+              alert("Please fill in all fields");
+            }
+          });
+
+        document
+          .getElementById("register-submit")
+          .addEventListener("click", function () {
+            const name = document.getElementById("register-name").value;
+            const email = document.getElementById("register-email").value;
+            const password = document.getElementById("register-password").value;
+            const confirm = document.getElementById("register-confirm").value;
+
+            if (name && email && password && confirm) {
+              if (password === confirm) {
+                alert("Registration successful! You can now login.");
+                // Switch to login form
+                loginTabs.forEach((t) => t.classList.remove("active"));
+                document
+                  .querySelector('.login-tab[data-tab="login"]')
+                  .classList.add("active");
+                registerForm.classList.add("hidden");
+                loginForm.classList.remove("hidden");
+              } else {
+                alert("Passwords do not match");
+              }
+            } else {
+              alert("Please fill in all fields");
+            }
+          });
+
+        // Reviews Carousel Functionality
+        const carousel = document.getElementById('reviews-carousel');
+        const track = document.getElementById('reviews-track');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const reviewCards = document.querySelectorAll('.review-card');
+        
+        let currentIndex = 0;
+        const cardWidth = 350; // Width of each review card
+        const gap = 30; // Gap between cards
+        const cardsPerView = 3; // Number of cards visible at once
+        
+        // Clone the first few cards for seamless looping
+        for (let i = 0; i < cardsPerView; i++) {
+          const clone = reviewCards[i].cloneNode(true);
+          track.appendChild(clone);
+        }
+        
+        // Function to update carousel position
+        function updateCarousel() {
+          track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+          
+          // Update active dot
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex % reviewCards.length);
+          });
+        }
+        
+        // Auto-scroll functionality
+        let autoScrollInterval = setInterval(() => {
+          currentIndex++;
+          if (currentIndex >= reviewCards.length) {
+            // Reset to beginning for seamless loop
+            currentIndex = 0;
+            track.style.transition = 'none';
+            updateCarousel();
+            
+            // Force reflow
+            track.offsetHeight;
+            
+            // Re-enable transition
+            track.style.transition = 'transform 0.5s ease';
+          }
+          updateCarousel();
+        }, 3000);
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => {
+          carousel.classList.add('paused');
+          clearInterval(autoScrollInterval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+          carousel.classList.remove('paused');
+          autoScrollInterval = setInterval(() => {
+            currentIndex++;
+            if (currentIndex >= reviewCards.length) {
+              currentIndex = 0;
+              track.style.transition = 'none';
+              updateCarousel();
+              track.offsetHeight;
+              track.style.transition = 'transform 0.5s ease';
+            }
+            updateCarousel();
+          }, 3000);
+        });
+        
+        // Dot navigation
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => {
+            currentIndex = parseInt(dot.getAttribute('data-index'));
+            updateCarousel();
+            
+            // Reset auto-scroll timer
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(() => {
+              currentIndex++;
+              if (currentIndex >= reviewCards.length) {
+                currentIndex = 0;
+                track.style.transition = 'none';
+                updateCarousel();
+                track.offsetHeight;
+                track.style.transition = 'transform 0.5s ease';
+              }
+              updateCarousel();
+            }, 3000);
+          });
+        });
+        
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        
+        track.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+          track.style.transition = 'none';
+          clearInterval(autoScrollInterval);
+        });
+        
+        track.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          
+          currentX = e.touches[0].clientX;
+          const diff = startX - currentX;
+          
+          // Move the track while dragging
+          track.style.transform = `translateX(calc(-${currentIndex * (cardWidth + gap)}px - ${diff}px))`;
+        });
+        
+        track.addEventListener('touchend', () => {
+          if (!isDragging) return;
+          
+          isDragging = false;
+          track.style.transition = 'transform 0.5s ease';
+          
+          const diff = startX - currentX;
+          const threshold = 50;
+          
+          if (diff > threshold) {
+            // Swipe left - next
+            currentIndex = (currentIndex + 1) % reviewCards.length;
+          } else if (diff < -threshold) {
+            // Swipe right - previous
+            currentIndex = (currentIndex - 1 + reviewCards.length) % reviewCards.length;
+          }
+          
+          updateCarousel();
+          
+          // Restart auto-scroll
+          autoScrollInterval = setInterval(() => {
+            currentIndex++;
+            if (currentIndex >= reviewCards.length) {
+              currentIndex = 0;
+              track.style.transition = 'none';
+              updateCarousel();
+              track.offsetHeight;
+              track.style.transition = 'transform 0.5s ease';
+            }
+            updateCarousel();
+          }, 3000);
+        });
+      });
+    </script>
   </body>
 </html>
