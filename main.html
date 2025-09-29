@@ -655,34 +655,35 @@
           </div>
 
           <!-- Step 3 -->
-          <div class="flex flex-col items-center">
-            <div class="bg-white p-6 rounded-full shadow-md mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-12 h-12 text-pink-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 7h13l3 4h2v6a2 2 0 01-2 2h-1a2 2 0 01-2 2H8a2 2 0 01-2 2H5a2 2 0 01-2 2V7z"
-                />
-                <circle cx="7.5" cy="17.5" r="1.5" fill="currentColor" />
-                <circle cx="17.5" cy="17.5" r="1.5" fill="currentColor" />
-              </svg>
-            </div>
-            <h3
-              class="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide"
-            >
-              DELIVERED
-            </h3>
-            <p class="mt-2 text-gray-700">
-              Your order gets delivered to your door with in time.
-            </p>
-          </div>
+<div class="flex flex-col items-center">
+  <div class="bg-white p-6 rounded-full shadow-md mb-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-12 h-12 text-pink-600"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+      />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+      />
+    </svg>
+  </div>
+  <h3
+    class="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide"
+  >
+    DELIVERED
+  </h3>
+  <p class="mt-2 text-gray-700">
+    Your order gets delivered to your door within time.
+  </p>
+</div>
 
           <!-- Step 4 -->
           <div class="flex flex-col items-center">
@@ -827,13 +828,13 @@
             <i class="bx bx-candles"></i>
           </div>
           <img
-            src="https://sallysbakingaddiction.com/wp-content/uploads/2017/07/cake-pops-recipe.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkt_EWXFXveId786uh3M0BOiEm6ynenjXdZQ&s"
             class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
-            alt="Cake Pops"
+            alt="Cookies"
           />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Cake Pops</h3>
+          <h3 class="text-xl font-semibold text-[#d45b66]">Cookies</h3>
           <p class="text-sm text-gray-600 mt-2">Fun bite-sized cake treats</p>
-           <a href="cakepop.html">
+           <a href="cookies.html">
             <button
               class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
             >
@@ -851,15 +852,15 @@
             <i class="bx bx-gift"></i>
           </div>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeeW7SeFAUQ_GcwxswdYH11YKj3w0frtFlQ&s"
+            src="https://hips.hearstapps.com/hmg-prod/images/glazed-donut-recipe-1-65008ab2b45fb.jpg?crop=1xw:1xh;center,top&resize=1200:*"
             class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
             alt="Deals"
           />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Special Deals</h3>
+          <h3 class="text-xl font-semibold text-[#d45b66]">Dounut</h3>
           <p class="text-sm text-gray-600 mt-2">
             Exclusive offers just for you
           </p>
-           <a href="specialDeals.html">
+           <a href="Dounut.html">
             <button
               class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
             >
@@ -1114,15 +1115,7 @@
             </div>
           </div>
           
-          <!-- Carousel Controls -->
-          <div class="carousel-controls">
-            <div class="carousel-dot active" data-index="0"></div>
-            <div class="carousel-dot" data-index="1"></div>
-            <div class="carousel-dot" data-index="2"></div>
-            <div class="carousel-dot" data-index="3"></div>
-            <div class="carousel-dot" data-index="4"></div>
-            <div class="carousel-dot" data-index="5"></div>
-          </div>
+          
         </div>
       </div>
     </section>
@@ -1335,7 +1328,7 @@
           loginForm.classList.remove("hidden");
         });
 
-        // Simple form submission (for demo purposes)
+        // Simple form submission
         document
           .getElementById("login-submit")
           .addEventListener("click", function () {
@@ -1377,47 +1370,21 @@
             }
           });
 
-        // Reviews Carousel Functionality
-        const carousel = document.getElementById('reviews-carousel');
-        const track = document.getElementById('reviews-track');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const reviewCards = document.querySelectorAll('.review-card');
+      
         
-        let currentIndex = 0;
-        const cardWidth = 350; // Width of each review card
-        const gap = 30; // Gap between cards
-        const cardsPerView = 3; // Number of cards visible at once
-        
-        // Clone the first few cards for seamless looping
-        for (let i = 0; i < cardsPerView; i++) {
-          const clone = reviewCards[i].cloneNode(true);
-          track.appendChild(clone);
-        }
-        
-        // Function to update carousel position
-        function updateCarousel() {
-          track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
-          
-          // Update active dot
-          dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex % reviewCards.length);
-          });
-        }
+       
         
         // Auto-scroll functionality
         let autoScrollInterval = setInterval(() => {
           currentIndex++;
           if (currentIndex >= reviewCards.length) {
-            // Reset to beginning for seamless loop
+            
             currentIndex = 0;
             track.style.transition = 'none';
             updateCarousel();
-            
-            // Force reflow
             track.offsetHeight;
-            
-            // Re-enable transition
-            track.style.transition = 'transform 0.5s ease';
+          
+            track.style.transition = 'transform 0.7s ease';
           }
           updateCarousel();
         }, 3000);
