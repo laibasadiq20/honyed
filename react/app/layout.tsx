@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Great_Vibes, Josefin_Sans } from "next/font/google"
 import "./globals.css"
+import { WishlistProvider } from "@/hooks/use-wishlist"
 
 const greatVibes = Great_Vibes({
   weight: "400",
@@ -31,7 +32,9 @@ export default function RootLayout({
       <head>
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
       </head>
-      <body className={josefinSans.className}>{children}</body>
+      <body className={josefinSans.className}>
+        <WishlistProvider>{children}</WishlistProvider>
+      </body>
     </html>
   )
 }

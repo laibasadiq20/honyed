@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react"
 
 export default function FeedbackSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
   const trackRef = useRef<HTMLDivElement>(null)
 
   const reviews = [
@@ -35,8 +34,6 @@ export default function FeedbackSection() {
   ]
 
   useEffect(() => {
-    if (isPaused) return
-
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         if (prev >= reviews.length - 1) {
@@ -47,7 +44,7 @@ export default function FeedbackSection() {
     }, 3000)
 
     return () => clearInterval(interval)
-  }, [isPaused, reviews.length])
+  }, [reviews.length])
 
   return (
     <section className="py-16 px-4 md:px-8 bg-white/80">
@@ -55,11 +52,7 @@ export default function FeedbackSection() {
         <h2 className="text-3xl font-bold text-center text-[#d45b66] mb-12">What Our Customers Say</h2>
 
         {/* Reviews Carousel */}
-        <div
-          className={`reviews-carousel ${!isPaused ? "auto-scroll" : "paused"}`}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
+        <div className="reviews-carousel auto-scroll">
           <div
             ref={trackRef}
             className="reviews-track"

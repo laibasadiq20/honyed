@@ -1,7 +1,7 @@
 export default function HeroSection() {
   return (
     <section className="relative flex items-center justify-center h-[80vh] text-center pt-28">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('pic.jpg')" }}></div>
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/pic.jpg')" }}></div>
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10 px-4">
         <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-lg">HONEYED</h1>

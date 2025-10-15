@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Footer() {
   return (
     <footer
@@ -39,60 +41,148 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 text-center md:text-left relative z-10">
-        {/* Contact Us - LEFT */}
-        <div className="space-y-3 md:justify-self-start">
-          <h3 className="flex items-center justify-center md:justify-start gap-2 text-2xl font-semibold tracking-wide text-yellow-50">
-            <i className="bx bxs-phone-call text-yellow-300 text-3xl"></i>Contact Us
-          </h3>
-          <p className="text-lg flex items-center justify-center md:justify-start gap-2">
-            <i className="bx bxs-phone text-yellow-300 text-xl"></i> +92 325 3657672
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left relative z-10">
+        {/* About */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-center md:justify-start mb-4">
+            <i className="bx bx-cake text-2xl mr-3"></i>
+            <h3 className="text-xl font-bold logo-text">HONEYED</h3>
+          </div>
+          <p className="mb-4 leading-relaxed">
+            Crafting delicious, artisanal baked goods with love and premium ingredients since 2010.
           </p>
-          <p className="text-lg flex items-center justify-center md:justify-start gap-2">
-            <i className="bx bxs-phone text-yellow-300 text-xl"></i> +92 322 3871813
-          </p>
-          <p className="text-lg flex items-center justify-center md:justify-start gap-2">
-            <i className="bx bxs-envelope text-yellow-300 text-xl"></i>
-            hello@honeyedbakery.com
-          </p>
-        </div>
-
-        {/* Opening Hours - CENTER */}
-        <div className="space-y-3 md:justify-self-center">
-          <h3 className="flex items-center justify-center gap-2 text-2xl font-semibold tracking-wide text-yellow-50">
-            <i className="bx bx-time-five text-yellow-300 text-3xl"></i>Opening Hours
-          </h3>
-          <p className="text-lg">Mon – Fri: 8:00 AM – 8:00 PM</p>
-          <p className="text-lg">Sat – Sun: 9:00 AM – 6:00 PM</p>
-        </div>
-
-        {/* Follow Us - RIGHT */}
-        <div className="space-y-4 md:justify-self-end">
-          <h3 className="flex items-center justify-center md:justify-end gap-2 text-2xl font-semibold tracking-wide text-yellow-50">
-            <i className="bx bxs-heart text-yellow-300 text-3xl"></i>Follow Us
-          </h3>
-
-          {/* Social Icons */}
-          <div className="flex justify-center md:justify-end gap-6 text-3xl">
-            <a href="#" className="hover:text-yellow-300 transform transition duration-300 hover:scale-125">
-              <i className="bx bxl-instagram"></i>
-            </a>
-            <a href="#" className="hover:text-yellow-300 transform transition duration-300 hover:scale-125">
+          <div className="flex gap-3 justify-center md:justify-start">
+            <a href="#" className="text-xl hover:text-white transition-colors p-2 rounded-full hover:bg-white/20">
               <i className="bx bxl-facebook-circle"></i>
             </a>
-            <a href="#" className="hover:text-yellow-300 transform transition duration-300 hover:scale-125">
-              <i className="bx bxl-whatsapp"></i>
+            <a href="#" className="text-xl hover:text-white transition-colors p-2 rounded-full hover:bg-white/20">
+              <i className="bx bxl-instagram-alt"></i>
             </a>
-            <a href="#" className="hover:text-yellow-300 transform transition duration-300 hover:scale-125">
+            <a href="#" className="text-xl hover:text-white transition-colors p-2 rounded-full hover:bg-white/20">
+              <i className="bx bxl-pinterest"></i>
+            </a>
+            <a href="#" className="text-xl hover:text-white transition-colors p-2 rounded-full hover:bg-white/20">
               <i className="bx bxl-tiktok"></i>
             </a>
           </div>
         </div>
+
+        {/* Quick Links */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            <li>
+              <Link
+                href="/"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cakes"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Cakes
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cupcakes"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Cupcakes
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cookies"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Cookies
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/macarons"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Macarons
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/donuts"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Donuts
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Customer Service */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-bold mb-4">Customer Service</h3>
+          <ul className="space-y-2">
+            <li>
+              <a
+                href="#contact"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Contact Us
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>FAQ
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="hover:text-white transition-colors flex items-center justify-center md:justify-start"
+              >
+                <i className="bx bx-chevron-right mr-2"></i>Terms of Service
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact Info */}
+        <div className="space-y-3">
+          <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+          <div className="space-y-3">
+            <p className="flex items-center justify-center md:justify-start">
+              <i className="bx bx-phone mr-3 text-lg"></i> +92 322 387 1813
+            </p>
+            <p className="flex items-center justify-center md:justify-start">
+              <i className="bx bx-envelope mr-3 text-lg"></i> hello@honeyedbakery.com
+            </p>
+            <p className="flex items-center justify-center md:justify-start">
+              <i className="bx bx-map mr-3 text-lg"></i> Lahore, Punjab, Pakistan
+            </p>
+            <p className="flex items-center justify-center md:justify-start">
+              <i className="bx bx-time mr-3 text-lg"></i> Mon-Sat: 8am-8pm
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Bottom Line */}
-      <div className="w-full mt-12 pt-6 border-t border-yellow-200/40 text-center text-base md:text-lg text-yellow-50 tracking-wide">
-        &copy; 2025 <span className="font-semibold">Honeyed by Amal</span>. All Rights Reserved.
+      <div className="border-t border-pink-300 mt-8 pt-6 text-center max-w-5xl mx-auto px-6">
+        <p>© 2025 Honeyed by Amal – All Rights Reserved | Made with ❤️ for dessert lovers</p>
       </div>
     </footer>
   )

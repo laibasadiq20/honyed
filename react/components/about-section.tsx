@@ -14,7 +14,7 @@ export default function AboutSection() {
               {/* Cake */}
               <div className="doodle-frame transform rotate-[-4deg]">
                 <img
-                  src="cake.jpg"
+                  src="/cake.jpg"
                   alt="Specialty Cake"
                   className="w-full h-48 object-cover rounded hand-drawn-border"
                 />
@@ -24,7 +24,7 @@ export default function AboutSection() {
               {/* Macaron */}
               <div className="doodle-frame transform rotate-[3deg] mt-10">
                 <img
-                  src="macroon.jpg"
+                  src="/macroon.jpg"
                   alt="Colorful Macarons"
                   className="w-full h-48 object-cover rounded hand-drawn-border"
                 />
@@ -34,7 +34,7 @@ export default function AboutSection() {
               {/* Donut */}
               <div className="doodle-frame transform rotate-[2deg]">
                 <img
-                  src="dounut.jpg"
+                  src="/dounut.jpg"
                   alt="Gourmet Donuts"
                   className="w-full h-48 object-cover rounded hand-drawn-border"
                 />
@@ -43,7 +43,7 @@ export default function AboutSection() {
 
               {/* Cupcakes */}
               <div className="doodle-frame transform rotate-[-3deg] mt-10 hand-drawn-border">
-                <img src="cupcakes.jpg" alt="Delicious Cupcakes" className="w-full h-48 object-cover rounded" />
+                <img src="/cupcakes.jpg" alt="Delicious Cupcakes" className="w-full h-48 object-cover rounded" />
                 <p className="text-center mt-2 text-sm text-gray-600 font-medium">Sweet Cupcakes</p>
               </div>
             </div>

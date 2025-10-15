@@ -47,7 +47,7 @@ export default function HowItWorksSection({ onOrderClick }: HowItWorksSectionPro
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7V5z" />
               </svg>
             </div>
-            <h3 className="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide">SELECT</h3>
+            <h3 className="font-[Poppins] text-pink-700 text-xl md:text-2xl font-bold tracking-wide mb-2">SELECT</h3>
             <p className="mt-2 text-gray-700">
               Choose the Cakeout you want.{" "}
               <span className="font-semibold">We've got Indulgent, Lighter and Vegan & Gluten Free boxes.</span>
@@ -72,7 +72,7 @@ export default function HowItWorksSection({ onOrderClick }: HowItWorksSectionPro
                 <circle cx="15" cy="6" r="2" fill="#F1BEB5" stroke="#DB2777" />
               </svg>
             </div>
-            <h3 className="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide">ORDER</h3>
+            <h3 className="font-[Poppins] text-pink-700 text-xl md:text-2xl font-bold tracking-wide mb-2">ORDER</h3>
             <p className="mt-2 text-gray-700">
               Pop your choice – or choices – into your basket and check out via our website.
             </p>
@@ -97,9 +97,7 @@ export default function HowItWorksSection({ onOrderClick }: HowItWorksSectionPro
                 />
               </svg>
             </div>
-            <h3 className="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide">
-              DELIVERED
-            </h3>
+            <h3 className="font-[Poppins] text-pink-700 text-xl md:text-2xl font-bold tracking-wide mb-2">DELIVERED</h3>
             <p className="mt-2 text-gray-700">Your order gets delivered to your door within time.</p>
           </div>
 
@@ -122,7 +120,7 @@ export default function HowItWorksSection({ onOrderClick }: HowItWorksSectionPro
                 />
               </svg>
             </div>
-            <h3 className="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide">ENJOY</h3>
+            <h3 className="font-[Poppins] text-pink-700 text-xl md:text-2xl font-bold tracking-wide mb-2">ENJOY</h3>
             <p className="mt-2 text-gray-700">
               The best bit! Get the kettle on and enjoy with your coffee in the comfort of your home.
             </p>

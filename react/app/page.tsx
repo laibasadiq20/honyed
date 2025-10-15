@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f3d9fa] via-[#fde2e4] to-[#fff3b0]">
-      <Header />
+      <Header currentPage="home" />
       <HeroSection />
       <AboutSection />
       <HowItWorksSection onOrderClick={() => setIsLoginModalOpen(true)} />
