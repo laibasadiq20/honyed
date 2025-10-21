@@ -357,6 +357,57 @@
       height: 100%;
       object-fit: cover;
     }
+ 
+    /* ---------- Mobile Responsive Tweaks ---------- */
+
+/* For tablets and phones */
+@media (max-width: 1024px) {
+  .story-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 600px) {
+  header nav {
+    display: none; /* hide desktop nav */
+  }
+
+  header .bx-menu {
+    display: block; /* show mobile menu icon */
+  }
+
+  .menu-items {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .menu-item {
+    width: 140px;
+    height: 140px;
+  }
+
+  .menu-btn {
+    width: 80%;
+    font-size: 0.8rem;
+  }
+
+  .story-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .story-images img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .review-card {
+    flex: 0 0 80%;
+  }
+}
 
   </style>
 </head>
@@ -503,10 +554,10 @@
              data-id="1" 
              data-name="Boston Cream Donut" 
              data-price="350" 
-             data-image="donuts/Boston.png" 
+             data-image="donuts/boston cream donut.jpg" 
              data-description="A classic donut filled with rich vanilla custard and topped with a smooth chocolate glaze. Our take on the traditional Boston cream pastry.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Boston.png" alt="Boston Cream Donut" class="h-full w-full object-cover">
+            <img src="donuts/boston cream donut.jpg" alt="Boston Cream Donut" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">Classic</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -541,10 +592,10 @@
              data-id="2" 
              data-name="Chocolate Glazed Donuts" 
              data-price="320" 
-             data-image="donuts/Chocolate-Donuts.jpg-300x300.png" 
+             data-image="donuts/chocolate glazed donut.jpg" 
              data-description="Rich chocolate donuts dipped in a smooth chocolate glaze and topped with colorful sprinkles. A chocolate lover's dream.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Chocolate-Donuts.jpg-300x300.png" alt="Chocolate Glazed Donuts" class="h-full w-full object-cover">
+            <img src="donuts/chocolate glazed donut.jpg" alt="Chocolate Glazed Donuts" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">Bestseller</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -579,10 +630,10 @@
              data-id="3" 
              data-name="Cream Filled Donut" 
              data-price="380" 
-             data-image="donuts/Cream-filled.jpg.png" 
+             data-image="donuts/cream filled donut.jpg" 
              data-description="Fluffy donut filled with our signature vanilla cream and dusted with powdered sugar. A perfect balance of sweetness and texture.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Cream-filled.jpg.png" alt="Cream Filled Donut" class="h-full w-full object-cover">
+            <img src="donuts/cream filled donut.jpg" alt="Cream Filled Donut" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">Signature</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -617,10 +668,10 @@
              data-id="4" 
              data-name="Lotus Biscoff Donut" 
              data-price="420" 
-             data-image="donuts/Lotus-Donut2-300x300.png" 
+             data-image="donuts/lotus biscoff donut.jpg" 
              data-description="A decadent donut featuring the beloved Lotus Biscoff spread, topped with crushed Biscoff cookies and a caramel drizzle.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Lotus-Donut2-300x300.png" alt="Lotus Biscoff Donut" class="h-full w-full object-cover">
+            <img src="donuts/lotus biscoff donut.jpg" alt="Lotus Biscoff Donut" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">Trending</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -656,10 +707,10 @@
              data-name="Rainbow Sprinkle Donuts" 
              data-price="350" 
              data-original-price="400"
-             data-image="donuts/Rainbow-Donuts-2.jpg-300x300.png" 
+             data-image="donuts/rainbow sprinkle donut.jpg" 
              data-description="Colorful donuts covered in vibrant rainbow sprinkles. Perfect for celebrations or when you need a little extra joy in your day.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Rainbow-Donuts-2.jpg-300x300.png" alt="Rainbow Sprinkle Donuts" class="h-full w-full object-cover">
+            <img src="donuts/rainbow sprinkle donut.jpg" alt="Rainbow Sprinkle Donuts" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">Special Offer</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -697,10 +748,10 @@
              data-id="6" 
              data-name="Classic Glazed Donut" 
              data-price="280" 
-             data-image="donuts/Boston.png" 
+             data-image="donuts/classic glazed donut.jpg" 
              data-description="Our classic glazed donut - light, fluffy, and perfectly sweet. The timeless favorite that never goes out of style.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Boston.png" alt="Classic Glazed Donut" class="h-full w-full object-cover">
+            <img src="donuts/classic glazed donut.jpg" alt="Classic Glazed Donut" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">Classic</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -735,10 +786,10 @@
              data-id="7" 
              data-name="Strawberry Frosted Donut" 
              data-price="360" 
-             data-image="donuts/Rainbow-Donuts-2.jpg-300x300.png" 
+             data-image="donuts/strawberry frosted dout.jpg" 
              data-description="A delightful donut topped with our homemade strawberry frosting and finished with colorful sprinkles. A fruity twist on a classic.">
           <div class="relative overflow-hidden h-48">
-            <img src="donuts/Rainbow-Donuts-2.jpg-300x300.png" alt="Strawberry Frosted Donut" class="h-full w-full object-cover">
+            <img src="donuts/strawberry frosted dout.jpg" alt="Strawberry Frosted Donut" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold">Fruity</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>

@@ -322,30 +322,20 @@
       background: #db2777 !important;
     }
 
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-      .carousel-slide { flex: 0 0 280px; }
-      .modal-content { width: 95%; max-width: 600px; }
-      .cake-preview { width: 350px; }
-      .carousel-nav { 
-        width: 40px; 
-        height: 40px; 
-      }
+    /* IMAGE SIZE ADJUSTMENTS */
+    .product-card .image-container {
+      height: 200px; /* Reduced from 48 (12rem) to 50 (12.5rem) */
+      overflow: hidden;
+      position: relative;
     }
-
-    @media (max-width: 640px) {
-      .cake-preview { 
-        width: 320px; 
-        right: -10px;
-      }
-      .modal-content { max-width: 95%; }
-    }
-
-    /* For special badges */
-    .bg-orange-500 { background-color: #ec4899; }
-    .bg-pink-500 { background-color: #ec4899; } 
     
-    /* Modal image sizing */
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
     .modal-image-container {
       height: 300px;
       overflow: hidden;
@@ -357,6 +347,86 @@
       height: 100%;
       object-fit: cover;
     }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .carousel-slide { flex: 0 0 280px; }
+      .modal-content { width: 95%; max-width: 600px; }
+      .cake-preview { width: 350px; }
+      .carousel-nav { 
+        width: 40px; 
+        height: 40px; 
+      }
+      .product-card .image-container {
+        height: 180px; /* Slightly smaller on mobile */
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cake-preview { 
+        width: 320px; 
+        right: -10px;
+      }
+      .modal-content { max-width: 95%; }
+      .product-card .image-container {
+        height: 160px; /* Even smaller on very small screens */
+      }
+    }
+
+    /* For special badges */
+    .bg-orange-500 { background-color: #ec4899; }
+    .bg-pink-500 { background-color: #ec4899; } 
+   
+    /* ---------- Mobile Responsive Tweaks ---------- */
+
+/* For tablets and phones */
+@media (max-width: 1024px) {
+  .story-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 600px) {
+  header nav {
+    display: none; /* hide desktop nav */
+  }
+
+  header .bx-menu {
+    display: block; /* show mobile menu icon */
+  }
+
+  .menu-items {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .menu-item {
+    width: 140px;
+    height: 140px;
+  }
+
+  .menu-btn {
+    width: 80%;
+    font-size: 0.8rem;
+  }
+
+  .story-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .story-images img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .review-card {
+    flex: 0 0 80%;
+  }
+}
 
   </style>
 </head>
@@ -503,10 +573,10 @@
              data-id="8" 
              data-name="Caramel Delight Cupcake" 
              data-price="350" 
-             data-image="Cupcakes/caraml.jpg" 
+             data-image="Cupcakes/caramel delight.webp" 
              data-description="Moist vanilla cupcake topped with rich caramel frosting and a drizzle of salted caramel. A perfect balance of sweet and salty flavors.">
-          <div class="relative overflow-hidden h-48">
-            <img src="Cupcakes/caraml.jpg" alt="Caramel Delight Cupcake" class="h-full w-full object-cover">
+          <div class="image-container relative overflow-hidden">
+            <img src="Cupcakes/caramel delight.webp"alt="Caramel Delight Cupcake" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">Sweet & Salty</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -541,10 +611,10 @@
              data-id="9" 
              data-name="Chocolate Dream Cupcake" 
              data-price="320" 
-             data-image="Cupcakes/chocolate.jpg" 
+             data-image="Cupcakes/chocolate dream.webp" 
              data-description="Rich chocolate cupcake with a creamy chocolate ganache center, topped with chocolate buttercream and chocolate shavings.">
-          <div class="relative overflow-hidden h-48">
-            <img src="Cupcakes/chocolate.jpg" alt="Chocolate Dream Cupcake" class="h-full w-full object-cover">
+          <div class="image-container relative overflow-hidden">
+            <img src="Cupcakes/chocolate dream.webp" alt="Chocolate Dream Cupcake" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">Chocoholic</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -579,10 +649,10 @@
              data-id="10" 
              data-name="Cookies & Cream Cupcake" 
              data-price="380" 
-             data-image="Cupcakes/cookie n cream.jpeg" 
+             data-image="Cupcakes/cookies and cream.webp" 
              data-description="Chocolate cupcake filled with cookie pieces, topped with creamy Oreo frosting and crushed cookie crumbs.">
-          <div class="relative overflow-hidden h-48">
-            <img src="Cupcakes/cookie n cream.jpeg" alt="Cookies & Cream Cupcake" class="h-full w-full object-cover">
+          <div class="image-container relative overflow-hidden">
+            <img src="Cupcakes/cookies and cream.webp" alt="Cookies & Cream Cupcake" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-gray-700 text-white px-3 py-1 rounded-full text-xs font-bold">Cookie Lover</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -611,54 +681,17 @@
         </div>
       </div>
       
+     
       <!-- Cupcake 4 -->
       <div class="carousel-slide">
         <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" 
              data-id="11" 
-             data-name="Lemon Zest Cupcake" 
-             data-price="340" 
-             data-image="Cupcakes/lemonzest.jpg" 
-             data-description="Zesty lemon cupcake with a tangy lemon curd center, topped with lemon cream cheese frosting and lemon zest.">
-          <div class="relative overflow-hidden h-48">
-            <img src="Cupcakes/lemonzest.jpg" alt="Lemon Zest Cupcake" class="h-full w-full object-cover">
-            <span class="absolute top-3 left-3 bg-yellow-400 text-white px-3 py-1 rounded-full text-xs font-bold">Citrus Fresh</span>
-            <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
-              <i class='bx bx-heart'></i>
-            </button>
-          </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-pink-700 mb-2">Lemon Zest</h3>
-            <p class="text-gray-600 text-sm mb-3">Tangy lemon with cream cheese</p>
-            <div class="flex items-center mb-3">
-              <div class="flex text-yellow-400">
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star-half'></i>
-              </div>
-              <span class="text-gray-500 text-xs ml-2">(87 reviews)</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div class="text-xl font-bold text-gray-800">Rs 340</div>
-              <button class="add-to-cart bg-pink-500 text-white p-2 rounded-full hover:scale-105 transition-all">
-                <i class='bx bx-plus text-lg'></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Cupcake 5 -->
-      <div class="carousel-slide">
-        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" 
-             data-id="12" 
              data-name="Red Velvet Cupcake" 
              data-price="370" 
              data-image="Cupcakes/red velvet cupcake. jpeg.jpg" 
              data-description="Classic red velvet cupcake with a hint of cocoa, topped with rich cream cheese frosting and red velvet crumbs.">
-          <div class="relative overflow-hidden h-48">
-            <img src="Cupcakes/red velvet cupcake. jpeg.jpg" alt="Red Velvet Cupcake" class="h-full w-full object-cover">
+          <div class="image-container relative overflow-hidden">
+            <img src="Cupcakes/red velvet cake.webp" alt="Red Velvet Cupcake" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">Classic</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -687,17 +720,17 @@
         </div>
       </div>
       
-      <!-- Cupcake 6 -->
+      <!-- Cupcake 5 -->
       <div class="carousel-slide">
         <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" 
-             data-id="13" 
+             data-id="12" 
              data-name="Vanilla Dream Cupcake" 
              data-price="300" 
              data-original-price="350"
-             data-image="Cupcakes/vanilla.jpeg" 
+             data-image="Cupcakes/vanlla dream.webp" 
              data-description="Light and fluffy vanilla cupcake with a creamy vanilla buttercream frosting, decorated with colorful sprinkles.">
-          <div class="relative overflow-hidden h-48">
-            <img src="Cupcakes/vanilla.jpeg" alt="Vanilla Dream Cupcake" class="h-full w-full object-cover">
+          <div class="image-container relative overflow-hidden">
+            <img src="Cupcakes/vanilla dream.webp" alt="Vanilla Dream Cupcake" class="w-full h-full object-cover">
             <span class="absolute top-3 left-3 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">Special Offer</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>

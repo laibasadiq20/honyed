@@ -358,6 +358,57 @@
       object-fit: cover;
     }
 
+    /* ---------- Mobile Responsive Tweaks ---------- */
+
+/* For tablets and phones */
+@media (max-width: 1024px) {
+  .story-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 600px) {
+  header nav {
+    display: none; /* hide desktop nav */
+  }
+
+  header .bx-menu {
+    display: block; /* show mobile menu icon */
+  }
+
+  .menu-items {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .menu-item {
+    width: 140px;
+    height: 140px;
+  }
+
+  .menu-btn {
+    width: 80%;
+    font-size: 0.8rem;
+  }
+
+  .story-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .story-images img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .review-card {
+    flex: 0 0 80%;
+  }
+}
+
   </style>
 </head>
 
@@ -503,10 +554,10 @@
              data-id="1" 
              data-name="Three Milk Cake" 
              data-price="2200" 
-             data-image="Cakes/3milk.webp" 
+             data-image="Cakes/three milk cake.jpeg" 
              data-description="A traditional Latin American dessert featuring sponge cake soaked in three kinds of milk. Topped with whipped cream and fresh fruits.">
           <div class="relative overflow-hidden h-48">
-            <img src="Cakes/3milk.webp" alt="Three Milk Cake" class="h-full w-full object-cover">
+            <img src="Cakes/three milk cake.jpeg" alt="Three Milk Cake" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">Traditional</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -541,10 +592,10 @@
              data-id="2" 
              data-name="Belgium Chocolate Cake" 
              data-price="2500" 
-             data-image="Cakes/Belgium.png" 
+             data-image="Cakes/belgium_chocolate.jpeg" 
              data-description="Made with premium Belgian chocolate, featuring multiple layers of moist chocolate sponge and rich ganache.">
           <div class="relative overflow-hidden h-48">
-            <img src="Cakes/Belgium.png" alt="Belgium Chocolate Cake" class="h-full w-full object-cover">
+            <img src="Cakes/belgium_chocolate.jpeg" alt="Belgium Chocolate Cake" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">Bestseller</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -617,10 +668,10 @@
              data-id="4" 
              data-name="Caramel Delight" 
              data-price="2100" 
-             data-image="Cakes/caramal.jpeg" 
+             data-image="Cakes/caramel_classic.jpeg" 
              data-description="Buttery vanilla cake with smooth caramel frosting and salted caramel drizzle.">
           <div class="relative overflow-hidden h-48">
-            <img src="Cakes/caramal.jpeg" alt="Caramel Delight" class="h-full w-full object-cover">
+            <img src="Cakes/caramel_classic.jpeg" alt="Caramel Delight" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">Sweet & Salty</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -656,10 +707,10 @@
              data-name="Chocolate Fudge Cake" 
              data-price="1800" 
              data-original-price="2000"
-             data-image="Cakes/Chocolate-Fudge-Cake.png" 
+             data-image="Cakes/chocolate fudge cake.jpeg" 
              data-description="Intensely rich and moist chocolate cake with layers of fudgy chocolate frosting. Perfect for chocolate lovers.">
           <div class="relative overflow-hidden h-48">
-            <img src="Cakes/Chocolate-Fudge-Cake.png" alt="Chocolate Fudge Cake" class="h-full w-full object-cover">
+            <img src="Cakes/chocolate fudge cake.jpeg" alt="Chocolate Fudge Cake" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">Special Offer</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -697,10 +748,10 @@
              data-id="6" 
              data-name="Lotus Cake" 
              data-price="2400" 
-             data-image="Cakes/Lotus-Cake.png" 
+             data-image="Cakes/lotus cakes.png" 
              data-description="Luxurious cake with Lotus Biscoff spread, spiced biscuit sponge and creamy Lotus filling.">
           <div class="relative overflow-hidden h-48">
-            <img src="Cakes/Lotus-Cake.png" alt="Lotus Cake" class="h-full w-full object-cover">
+            <img src="Cakes/lotus cakes.png" alt="Lotus Cake" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold">Trending</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -735,10 +786,10 @@
              data-id="7" 
              data-name="Pistachio Cake" 
              data-price="2600" 
-             data-image="Cakes/Pistachio.jpg" 
+             data-image="Cakes/pistachio cake.png" 
              data-description="Elegant cake with delicate pistachio flavor, rich pistachio cream and crushed pistachios.">
           <div class="relative overflow-hidden h-48">
-            <img src="Cakes/Pistachio.jpg" alt="Pistachio Cake" class="h-full w-full object-cover">
+            <img src="Cakes/pistachio cake.png" alt="Pistachio Cake" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">Premium</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>

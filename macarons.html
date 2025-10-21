@@ -358,6 +358,57 @@
       object-fit: cover;
     }
 
+     /* ---------- Mobile Responsive Tweaks ---------- */
+
+/* For tablets and phones */
+@media (max-width: 1024px) {
+  .story-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 600px) {
+  header nav {
+    display: none; /* hide desktop nav */
+  }
+
+  header .bx-menu {
+    display: block; /* show mobile menu icon */
+  }
+
+  .menu-items {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .menu-item {
+    width: 140px;
+    height: 140px;
+  }
+
+  .menu-btn {
+    width: 80%;
+    font-size: 0.8rem;
+  }
+
+  .story-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .story-images img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .review-card {
+    flex: 0 0 80%;
+  }
+}
+
   </style>
 </head>
 
@@ -497,54 +548,18 @@
     </button>
     
     <div class="carousel-track" id="cake-carousel">
-      <!-- Macaron 1 -->
-      <div class="carousel-slide">
-        <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" 
-             data-id="8" 
-             data-name="Blueberry Macaron" 
-             data-price="280" 
-             data-image="macroons/blubery.png" 
-             data-description="Delicate almond shells filled with fresh blueberry cream. A perfect balance of fruity sweetness and delicate texture.">
-          <div class="relative overflow-hidden h-48">
-            <img src="macroons/blubery.png" alt="Blueberry Macaron" class="h-full w-full object-cover">
-            <span class="absolute top-3 left-3 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">Fruity</span>
-            <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
-              <i class='bx bx-heart'></i>
-            </button>
-          </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-pink-700 mb-2">Blueberry Macaron</h3>
-            <p class="text-gray-600 text-sm mb-3">Fresh blueberry cream filling</p>
-            <div class="flex items-center mb-3">
-              <div class="flex text-yellow-400">
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star'></i>
-                <i class='bx bxs-star-half'></i>
-              </div>
-              <span class="text-gray-500 text-xs ml-2">(87 reviews)</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div class="text-xl font-bold text-gray-800">Rs 280</div>
-              <button class="add-to-cart bg-pink-500 text-white p-2 rounded-full hover:scale-105 transition-all">
-                <i class='bx bx-plus text-lg'></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+  
+     
       <!-- Macaron 2 -->
       <div class="carousel-slide">
         <div class="product-card bg-white rounded-xl shadow-lg overflow-hidden h-full" 
              data-id="9" 
              data-name="Lemon Zest Macaron" 
              data-price="260" 
-             data-image="macroons/Lemon.png" 
+             data-image="macrons/lemon zest macron.jpg" 
              data-description="Tangy lemon with cream cheese filling. A zesty delight that balances sweet and tart flavors perfectly.">
           <div class="relative overflow-hidden h-48">
-            <img src="macroons/Lemon.png" alt="Lemon Zest Macaron" class="h-full w-full object-cover">
+            <img src="macrons/lemon zest macron.jpg" alt="Lemon Zest Macaron" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">Citrus</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -579,10 +594,10 @@
              data-id="10" 
              data-name="Oreo Crunch Macaron" 
              data-price="300" 
-             data-image="macroons/Oreo.png" 
+             data-image="macrons/oreo macron.jpg"
              data-description="Decadent chocolate shells filled with creamy Oreo filling and crunchy cookie bits. A chocolate lover's dream.">
           <div class="relative overflow-hidden h-48">
-            <img src="macroons/Oreo.png" alt="Oreo Crunch Macaron" class="h-full w-full object-cover">
+            <img src="macrons/oreo macron.jpg" alt="Oreo Crunch Macaron" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-bold">Chocolate</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -617,10 +632,10 @@
              data-id="11" 
              data-name="Pistachio Macaron" 
              data-price="290" 
-             data-image="macroons/Pistachio.png" 
+             data-image="macrons/pistachio macron.jpg" 
              data-description="Rich pistachio cream sandwiched between delicate almond shells. A sophisticated flavor with a subtle nutty sweetness.">
           <div class="relative overflow-hidden h-48">
-            <img src="macroons/Pistachio.png" alt="Pistachio Macaron" class="h-full w-full object-cover">
+            <img src="macrons/pistachio macron.jpg" alt="Pistachio Macaron" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">Nutty</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>
@@ -655,10 +670,10 @@
              data-id="12" 
              data-name="Strawberry Macaron" 
              data-price="270" 
-             data-image="macroons/Strawberry.png" 
+             data-image="macroons/strawberry macron.jpg" 
              data-description="Sweet strawberry ganache filling encased in delicate almond shells. A classic flavor that never disappoints.">
           <div class="relative overflow-hidden h-48">
-            <img src="macroons/Strawberry.png" alt="Strawberry Macaron" class="h-full w-full object-cover">
+            <img src="macrons/strawberry macron.jpg" alt="Strawberry Macaron" class="h-full w-full object-cover">
             <span class="absolute top-3 left-3 bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold">Fruity</span>
             <button class="absolute top-3 right-3 bg-white/90 text-pink-600 p-2 rounded-full hover:bg-white transition-all heart-btn">
               <i class='bx bx-heart'></i>

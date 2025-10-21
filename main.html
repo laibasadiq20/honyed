@@ -27,18 +27,141 @@
         font-family: "Josefin Sans", sans-serif;
         font-weight: 400;
         line-height: 1.7;
+        scroll-behavior: smooth;
       }
 
-      h1,
-      h2,
-      h3,
-      header .text-xl,
-      .logo-text {
+      h1, h2, h3, header .text-xl, .logo-text {
         font-family: "Great Vibes", cursive;
         font-weight: 400;
         letter-spacing: 1px;
       }
 
+      .menu-section {
+        text-align: center;
+        background-color: #fff6f9;
+        padding: 70px 0;
+        position: relative;
+        font-family: "Josefin Sans", sans-serif;
+      }
+
+      .menu-title h2 {
+        font-family: "Great Vibes", cursive;
+        font-size: 3rem;
+        color: #f55c7d;
+        margin-bottom: 5px;
+      }
+
+      .menu-title h3 {
+        font-family: "Josefin Sans", sans-serif;
+        font-size: 2rem;
+        color: #f14285;
+        margin-bottom: 5px;
+      }
+
+      .menu-title .tagline {
+        font-size: 1.2rem;
+        color: #f55c7d;
+        margin-bottom: 3px;
+      }
+
+      .menu-title .sub-tagline {
+        font-size: 1rem;
+        color: #f55c7d;
+        margin-bottom: 60px;
+      }
+
+      .menu-area {
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      .wavy-line {
+        position: absolute;
+        top: 45%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        z-index: 0;
+      }
+
+      .wavy-line svg path {
+        fill: none;
+        stroke: #ff4da6;
+        stroke-width: 3;
+        stroke-dasharray: 6 10;
+      }
+      
+      .menu-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 70px;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .menu-item-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .menu-item {
+        background: white;
+        border: 4px solid #ffa7c4;
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 6px 12px rgba(255, 100, 150, 0.2);
+        transition: transform 0.3s ease;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-8px);
+      }
+
+      .menu-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+      }
+
+      .menu-item:hover img {
+        transform: scale(1.05);
+      }
+      
+      .menu-btn {
+        background: linear-gradient(to right, #f28c82, #d45b66);
+        border: none;
+        color: #fff;
+        padding: 10px 22px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(212, 91, 102, 0.3);
+      }
+
+      .menu-btn:hover {
+        background: linear-gradient(to right, #d45b66, #f28c82);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(212, 91, 102, 0.4);
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
       .doodle-frame {
         position: relative;
         padding: 12px;
@@ -65,10 +188,28 @@
         border-radius: 16px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       }
+      .story-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 100px;
+  flex-wrap: wrap;
+}
 
-      .floating {
-        animation: float 6s ease-in-out infinite;
-      }
+.story-images img {
+  width: 280px;
+  height: 280px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.story-content {
+  max-width: 500px;
+  text-align: left;
+}
+
+
 
       @keyframes float {
         0%,
@@ -85,18 +226,6 @@
       }
       .delay-2 {
         animation-delay: 2s;
-      }
-
-      @keyframes progress {
-        0% {
-          width: 0%;
-        }
-        100% {
-          width: 100%;
-        }
-      }
-      .animate-progress {
-        animation: progress 3s ease-in-out infinite;
       }
 
       /* Login Modal Styles */
@@ -229,6 +358,8 @@
         padding: 0 15px;
         color: #777;
         font-size: 14px;
+        position: relative;
+        z-index: 1;
       }
 
       .social-buttons {
@@ -274,6 +405,7 @@
         color: #777;
         cursor: pointer;
         transition: color 0.3s;
+        z-index: 10;
       }
 
       .close-modal:hover {
@@ -289,9 +421,13 @@
       
       .reviews-track {
         display: flex;
-        transition: transform 0.5s ease;
         gap: 30px;
         padding: 0 20px;
+        animation: scroll 30s linear infinite;
+      }
+      
+      .reviews-track:hover {
+        animation-play-state: paused;
       }
       
       .review-card {
@@ -308,39 +444,314 @@
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
       }
       
-      .carousel-controls {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-top: 30px;
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-350px * 6 - 30px * 6));
+        }
       }
-      
-      .carousel-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #f8bbd9;
-        cursor: pointer;
+
+      /* Mobile Menu Styles */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        z-index: 999;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
         transition: all 0.3s ease;
       }
-      
-      .carousel-dot.active {
-        background: #d45b66;
+
+      .mobile-menu.active {
+        display: flex;
+      }
+
+      .mobile-menu a {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #d45b66;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu a:hover {
+        color: #f28c82;
+        transform: translateY(-2px);
+      }
+
+      .close-mobile-menu {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #d45b66;
+        cursor: pointer;
+      }
+
+      /* Mobile Carousel Styles */
+      .mobile-carousel {
+        display: none;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 20px 0;
+      }
+
+      .mobile-carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .mobile-carousel-item {
+        flex: 0 0 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: #f55c7d;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .carousel-arrow:hover {
+        background: white;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .carousel-arrow.left {
+        left: 10px;
+      }
+
+      .carousel-arrow.right {
+        right: 10px;
+      }
+
+      /* Swipe indicators */
+      .swipe-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .swipe-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #ffa7c4;
+        transition: all 0.3s ease;
+      }
+
+      .swipe-indicator.active {
+        background-color: #f55c7d;
         transform: scale(1.2);
       }
-      
-      /* Animation for auto-scroll */
-      @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-350px * 3 - 30px * 3)); }
+
+      /* ---------- Mobile Responsive Tweaks ---------- */
+
+      /* For tablets and phones */
+      @media (max-width: 1024px) {
+        .story-section {
+          flex-direction: column;
+          padding: 40px 20px;
+        }
+
+        .story-content {
+          text-align: center;
+          max-width: 100%;
+        }
+
+        .menu-items {
+          gap: 40px;
+        }
+
+        .menu-item {
+          width: 150px;
+          height: 150px;
+        }
+
+        .review-card {
+          flex: 0 0 300px;
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-300px * 6 - 30px * 6));
+          }
+        }
       }
-      
-      .auto-scroll .reviews-track {
-        animation: scroll 30s linear infinite;
+
+      /* For mobile screens */
+      @media (max-width: 768px) {
+        header nav {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .menu-section {
+          padding: 50px 0;
+        }
+
+        /* Show mobile carousel, hide desktop menu */
+        .menu-items {
+          display: none;
+        }
+
+        .mobile-carousel {
+          display: block;
+        }
+
+        .wavy-line {
+          display: none;
+        }
+
+        .menu-title h2 {
+          font-size: 2.5rem;
+        }
+
+        .menu-title h3 {
+          font-size: 1.5rem;
+        }
+
+        .menu-title .tagline {
+          font-size: 1rem;
+        }
+
+        .menu-title .sub-tagline {
+          font-size: 0.9rem;
+          margin-bottom: 40px;
+        }
+
+        .story-section {
+          flex-direction: column;
+          padding: 30px 20px;
+          text-align: center;
+        }
+
+        .story-images {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .story-images img {
+          width: 200px;
+          height: 200px;
+        }
+
+        .doodle-frame {
+          transform: none !important;
+          margin-top: 0 !important;
+        }
+
+        .review-card {
+          flex: 0 0 85%;
+        }
+
+        .reviews-track {
+          gap: 20px;
+          padding: 0 10px;
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-85% * 6 - 20px * 6));
+          }
+        }
+
+        footer .grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        footer .md\\:justify-self-start,
+        footer .md\\:justify-self-end {
+          justify-self: center;
+        }
+
+        footer .text-center {
+          text-align: center;
+        }
+
+        .login-content {
+          width: 95%;
+        }
       }
-      
-      .auto-scroll.paused .reviews-track {
-        animation-play-state: paused;
+
+      @media (max-width: 480px) {
+        .mobile-carousel-item .menu-item {
+          width: 200px;
+          height: 200px;
+        }
+
+        .menu-btn {
+          padding: 8px 16px;
+          font-size: 0.8rem;
+        }
+
+        .story-images img {
+          width: 150px;
+          height: 150px;
+        }
+
+        .review-card {
+          flex: 0 0 90%;
+          padding: 20px;
+        }
+
+        .reviews-track {
+          gap: 15px;
+        }
+
+        .login-form {
+          padding: 20px;
+        }
+
+        .form-group input {
+          padding: 10px 12px;
+        }
+
+        .login-btn {
+          padding: 12px;
+        }
       }
     </style>
   </head>
@@ -353,8 +764,8 @@
       <div class="relative backdrop-blur-md shadow-md">
         <div class="flex justify-between items-center px-6 py-4">
           <!-- Left Menu Icon  -->
-          <div class="text-3xl md:hidden">
-            <i class="bx bx-menu"></i>
+          <div class="text-3xl md:hidden mobile-menu-btn">
+            <i class="bx bx-menu" id="mobile-menu-toggle"></i>
           </div>
 
           <!-- Logo -->
@@ -373,7 +784,7 @@
             <a href="#contact" class="hover:text-pink-900 transition"
               >Contact Us</a
             >
-            <a href="#order" class="hover:text-pink-900 transition">Order</a>
+            <a href="#order" id="order-nav-link" class="hover:text-pink-900 transition">Order</a>
           </nav>
 
           <!-- Right Icons -->
@@ -392,7 +803,19 @@
       </div>
     </header>
 
-    <!-- ================ HONYED SECTION =====================-->
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <button class="close-mobile-menu" id="close-mobile-menu">
+        <i class="bx bx-x"></i>
+      </button>
+      <a href="#" class="mobile-nav-link">Home</a>
+      <a href="#menu" class="mobile-nav-link">Menu</a>
+      <a href="#about" class="mobile-nav-link">About Us</a>
+      <a href="#contact" class="mobile-nav-link">Contact Us</a>
+      <a href="#order" class="mobile-nav-link" id="mobile-order-link">Order</a>
+    </div>
+
+    <!-- ================ HONEYED SECTION =====================-->
     <section
       class="relative flex items-center justify-center h-[80vh] text-center pt-28"
     >
@@ -416,469 +839,247 @@
         </a>
       </div>
     </section>
+    
+    <!---========================== menu ============================ -->
+    <section id="menu" class="menu-section">
+      <div class="menu-title">
+        <h2>Our Menu</h2>
+        <p class="tagline">Everything is Homemade</p>
+        <p class="sub-tagline">Baked with care, hygiene and quality ingredients.</p>
+      </div>
 
-    <!--=========================  ABOUT SECTION ========================= -->
-    <section id="about" class="py-20 px-4 md:px-8 relative overflow-hidden">
-      <!-- Decorative elements -->
-      <div
-        class="absolute top-10 left-5 w-10 h-10 bg-yellow-200/40 rounded-full floating"
-      ></div>
-      <div
-        class="absolute top-1/3 right-8 w-8 h-8 bg-pink-200/40 rounded-full floating delay-1"
-      ></div>
-      <div
-        class="absolute bottom-20 left-10 w-12 h-12 bg-yellow-200/30 rounded-full floating delay-2"
-      ></div>
+      <div class="menu-area">
+        <div class="wavy-line">
+          <svg viewBox="0 0 1400 100" preserveAspectRatio="none">
+            <path d="M0,50 Q200,20 400,50 T800,50 T1200,50 T1400,50" />
+          </svg>
+        </div>
 
-      <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row items-center gap-12">
-          <!-- Image Collage with Doodle Frames -->
-          <div class="w-full md:w-1/2 relative flex justify-center">
-            <div class="grid grid-cols-2 gap-6 w-full max-w-md">
-              <!-- Cake -->
-              <div class="doodle-frame transform rotate-[-4deg]">
-                <img
-                  src="cake.jpg"
-                  alt="Specialty Cake"
-                  class="w-full h-48 object-cover rounded hand-drawn-border"
-                />
-                <p class="text-center mt-2 text-sm text-gray-600 font-medium">
-                  Signature Cakes
-                </p>
+        <!-- Desktop Menu -->
+        <div class="menu-items">
+          <!-- Cupcakes -->
+          <div class="menu-item-container">
+            <a href="cupcakes.html" class="menu-item-link">
+              <div class="menu-item">
+                <img src="https://thefirstyearblog.com/wp-content/uploads/2017/03/Vanilla-Cupcakes-Square-2024.png" alt="Cupcakes">
               </div>
-
-              <!-- Macaron -->
-              <div class="doodle-frame transform rotate-[3deg] mt-10">
-                <img
-                  src="macroon.jpg"
-                  alt="Colorful Macarons"
-                  class="w-full h-48 object-cover rounded hand-drawn-border"
-                />
-                <p class="text-center mt-2 text-sm text-gray-600 font-medium">
-                  French Macarons
-                </p>
+            </a>
+            <a href="cupcakes.html">
+              <button class="menu-btn">Cupcakes</button>
+            </a>
+          </div>
+          
+          <!-- Macarons -->
+          <div class="menu-item-container">
+            <a href="macarons.html" class="menu-item-link">
+              <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTpIGgwl18U2t0x0E4_pRtVX2unkJG0RYLng&s" alt="Macarons">
               </div>
-
-              <!-- Donut -->
-              <div class="doodle-frame transform rotate-[2deg]">
-                <img
-                  src="dounut.jpg"
-                  alt="Gourmet Donuts"
-                  class="w-full h-48 object-cover rounded hand-drawn-border"
-                />
-                <p class="text-center mt-2 text-sm text-gray-600 font-medium">
-                  Artisan Donuts
-                </p>
+            </a>
+            <a href="macarons.html">
+              <button class="menu-btn">Macarons</button>
+            </a>
+          </div>
+          
+          <!-- Cakes -->
+          <div class="menu-item-container">
+            <a href="cake.html" class="menu-item-link">
+              <div class="menu-item">
+                <img src="https://flouringkitchen.com/wp-content/uploads/2023/07/BW1A4089-2.jpg" alt="Cakes">
               </div>
-
-              <!-- Cupcakes -->
-              <div
-                class="doodle-frame transform rotate-[-3deg] mt-10 hand-drawn-border"
-              >
-                <img
-                  src="cupcakes.jpg"
-                  alt="Delicious Cupcakes"
-                  class="w-full h-48 object-cover rounded"
-                />
-                <p class="text-center mt-2 text-sm text-gray-600 font-medium">
-                  Sweet Cupcakes
-                </p>
+            </a>
+            <a href="cake.html">
+              <button class="menu-btn">Cakes</button>
+            </a>
+          </div>
+          
+          <!-- Cookies -->
+          <div class="menu-item-container">
+            <a href="cookies.html" class="menu-item-link">
+              <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkt_EWXFXveId786uh3M0BOiEm6ynenjXdZQ&s" alt="Cookies">
               </div>
+            </a>
+            <a href="cookies.html">
+              <button class="menu-btn">Cookies</button>
+            </a>
+          </div>
+          
+          <!-- Donuts -->
+          <div class="menu-item-container">
+            <a href="dounut.html" class="menu-item-link">
+              <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9_bwC_pUgSrA_bluEEY1UwAiOJxQUi5K0FA&s" alt="Donuts">
+              </div>
+            </a>
+            <a href="dounut.html">
+              <button class="menu-btn">Donuts</button>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Carousel -->
+        <div class="mobile-carousel">
+          <button class="carousel-arrow left" id="prev-btn">
+            <i class="bx bx-chevron-left"></i>
+          </button>
+          
+          <div class="mobile-carousel-track" id="mobile-track">
+            <!-- Cupcakes -->
+            <div class="mobile-carousel-item">
+              <a href="cupcakes.html" class="menu-item-link">
+                <div class="menu-item">
+                  <img src="https://thefirstyearblog.com/wp-content/uploads/2017/03/Vanilla-Cupcakes-Square-2024.png" alt="Cupcakes">
+                </div>
+              </a>
+              <a href="cupcakes.html">
+                <button class="menu-btn">Cupcakes</button>
+              </a>
+            </div>
+            
+            <!-- Macarons -->
+            <div class="mobile-carousel-item">
+              <a href="macarons.html" class="menu-item-link">
+                <div class="menu-item">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTpIGgwl18U2t0x0E4_pRtVX2unkJG0RYLng&s" alt="Macarons">
+                </div>
+              </a>
+              <a href="macarons.html">
+                <button class="menu-btn">Macarons</button>
+              </a>
+            </div>
+            
+            <!-- Cakes -->
+            <div class="mobile-carousel-item">
+              <a href="cake.html" class="menu-item-link">
+                <div class="menu-item">
+                  <img src="https://flouringkitchen.com/wp-content/uploads/2023/07/BW1A4089-2.jpg" alt="Cakes">
+                </div>
+              </a>
+              <a href="cake.html">
+                <button class="menu-btn">Cakes</button>
+              </a>
+            </div>
+            
+            <!-- Cookies -->
+            <div class="mobile-carousel-item">
+              <a href="cookies.html" class="menu-item-link">
+                <div class="menu-item">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkt_EWXFXveId786uh3M0BOiEm6ynenjXdZQ&s" alt="Cookies">
+                </div>
+              </a>
+              <a href="cookies.html">
+                <button class="menu-btn">Cookies</button>
+              </a>
+            </div>
+            
+            <!-- Donuts -->
+            <div class="mobile-carousel-item">
+              <a href="dounut.html" class="menu-item-link">
+                <div class="menu-item">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9_bwC_pUgSrA_bluEEY1UwAiOJxQUi5K0FA&s" alt="Donuts">
+                </div>
+              </a>
+              <a href="dounut.html">
+                <button class="menu-btn">Donuts</button>
+              </a>
             </div>
           </div>
-
-          <!-- Text Content -->
-          <div
-            class="w-full md:w-1/2 bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg"
-          >
-            <h2
-              class="text-4xl font-bold text-[#d45b66] mb-6 relative inline-block"
-            >
-              Our Story
-              <span
-                class="absolute -bottom-2 left-0 w-1/3 h-1 bg-yellow-400 rounded-full"
-              ></span>
-            </h2>
-            <!-- Main Story -->
-            <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-              At <span class="font-semibold text-[#d45b66]">Honeyed</span>, we
-              blend the warmth of homemade baking with a touch of modern
-              elegance. Founded in 2015 by
-              <span class="font-medium text-[#d45b66]">Amal</span>, our dream
-              was to craft desserts that create memories—soft, delicate, and
-              unforgettable.
-            </p>
-
-            <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
-              From fluffy cakes to pastel macarons, every recipe is baked fresh
-              with organic ingredients and a whole lot of love. No artificial
-              flavors, no shortcuts—just pure, simple sweetness.
-            </p>
-
-            <div class="flex space-x-4">
-              <div
-                class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border"
-              >
-                <i class="bx bx-time-five text-3xl text-[#d45b66] mb-2"></i>
-                <p class="font-semibold">Fresh Daily</p>
-              </div>
-              <div
-                class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border"
-              >
-                <i class="bx bx-heart text-3xl text-[#d45b66] mb-2"></i>
-                <p class="font-semibold">Made with Love</p>
-              </div>
-              <div
-                class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border"
-              >
-                <i class="bx bx-leaf text-3xl text-[#d45b66] mb-2"></i>
-                <p class="font-semibold">Organic Ingredients</p>
-              </div>
-            </div>
+          
+          <button class="carousel-arrow right" id="next-btn">
+            <i class="bx bx-chevron-right"></i>
+          </button>
+          
+          <!-- Swipe indicators -->
+          <div class="swipe-indicators" id="swipe-indicators">
+            <div class="swipe-indicator active"></div>
+            <div class="swipe-indicator"></div>
+            <div class="swipe-indicator"></div>
+            <div class="swipe-indicator"></div>
+            <div class="swipe-indicator"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= HOW IT WORKS SECTION ================= -->
-    <section class="bg-pink-100 py-16">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-center text-pink-700 mb-12"
-        >
-          How it works
+    
+    <!--=========================  ABOUT SECTION ========================= -->
+<section
+  id="about"
+  class="relative py-20 px-4 md:px-8 overflow-hidden bg-[url('doodle.jpg')] bg-cover bg-center bg-no-repeat"
+>
+  <!-- Semi-transparent overlay for readability -->
+  <div class="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+
+  <!-- Decorative floating elements -->
+  <div class="absolute top-10 left-5 w-10 h-10 bg-yellow-200/40 rounded-full floating"></div>
+  <div class="absolute top-1/3 right-8 w-8 h-8 bg-pink-200/40 rounded-full floating delay-1"></div>
+  <div class="absolute bottom-20 left-10 w-12 h-12 bg-yellow-200/30 rounded-full floating delay-2"></div>
+
+  <!-- Actual content wrapper -->
+  <div class="relative container mx-auto">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      
+      <!-- TEXT FIRST -->
+      <div class="w-full md:w-1/2 bg-white/70 p-8 rounded-2xl shadow-lg backdrop-blur-sm z-10">
+        <h2 class="text-4xl font-bold text-[#d45b66] mb-6 relative inline-block">
+          Our Story
+          <span class="absolute -bottom-2 left-0 w-1/3 h-1 bg-yellow-400 rounded-full"></span>
         </h2>
 
-        <!-- Progress Line -->
-        <div class="hidden md:flex items-center justify-center mb-12 relative">
-          <div
-            class="absolute top-1/2 left-0 right-0 h-1 bg-pink-300 rounded-full z-0"
-          ></div>
-          <div
-            class="absolute top-1/2 left-0 h-1 bg-pink-600 rounded-full z-10 animate-progress"
-          ></div>
+        <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+          At <span class="font-semibold text-[#d45b66]">Honeyed</span>, we blend the warmth of homemade baking with a touch of modern elegance.
+          Founded in 2015 by <span class="font-medium text-[#d45b66]">Amal</span>, our dream was to craft desserts that create memories—soft, delicate, and unforgettable.
+        </p>
 
-          <!-- Progress Dots -->
-          <div class="relative z-20 flex justify-between w-full max-w-3xl">
-            <div
-              class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold shadow-lg"
-            >
-              1
-            </div>
-            <div
-              class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold shadow-lg"
-            >
-              2
-            </div>
-            <div
-              class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold shadow-lg"
-            >
-              3
-            </div>
-            <div
-              class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold shadow-lg"
-            >
-              4
-            </div>
+        <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
+          From fluffy cakes to pastel macarons, every recipe is baked fresh with organic ingredients and a whole lot of love.
+          No artificial flavors, no shortcuts—just pure, simple sweetness.
+        </p>
+
+        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+          <div class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border">
+            <i class="bx bx-time-five text-3xl text-[#d45b66] mb-2"></i>
+            <p class="font-semibold">Fresh Daily</p>
+          </div>
+          <div class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border">
+            <i class="bx bx-heart text-3xl text-[#d45b66] mb-2"></i>
+            <p class="font-semibold">Made with Love</p>
+          </div>
+          <div class="flex-1 bg-gradient-to-r from-yellow-100 to-pink-100 p-4 rounded-lg text-center hand-drawn-border">
+            <i class="bx bx-leaf text-3xl text-[#d45b66] mb-2"></i>
+            <p class="font-semibold">Organic Ingredients</p>
           </div>
         </div>
+      </div>
 
-        <!-- Steps Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center">
-          <!-- Step 1 -->
-          <div class="flex flex-col items-center">
-            <div class="bg-white p-6 rounded-full shadow-md mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-12 h-12 text-pink-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7V5z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide"
-            >
-              SELECT
-            </h3>
-            <p class="mt-2 text-gray-700">
-              Choose the Cakeout you want.
-              <span class="font-semibold"
-                >We've got Indulgent, Lighter and Vegan & Gluten Free
-                boxes.</span
-              >
-            </p>
+      <!-- IMAGES -->
+      <div class="w-full md:w-1/2 relative flex justify-center z-10">
+        <div class="grid grid-cols-2 gap-6 w-full max-w-md">
+          <div class="doodle-frame transform rotate-[-4deg]">
+            <img src="cake.jpg" alt="Specialty Cake" class="w-full h-48 object-cover rounded hand-drawn-border" />
+            <p class="text-center mt-2 text-sm text-gray-600 font-medium">Signature Cakes</p>
           </div>
 
-          <!-- Step 2 -->
-          <div class="flex flex-col items-center">
-            <div class="bg-white p-6 rounded-full shadow-md mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#DB2777"
-                class="w-12 h-12 text-pink-500"
-              >
-                <rect
-                  x="4"
-                  y="8"
-                  width="16"
-                  height="12"
-                  rx="2"
-                  fill="white"
-                  stroke="#DB2777"
-                />
-                <path d="M4 12h16" stroke="#DB2777" stroke-width="1.5" />
-                <path d="M12 8v12" stroke="#DB2777" stroke-width="1.5" />
-                <circle cx="9" cy="6" r="2" fill="#F1BEB5" stroke="#DB2777" />
-                <circle cx="15" cy="6" r="2" fill="#F1BEB5" stroke="#DB2777" />
-              </svg>
-            </div>
-            <h3
-              class="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide"
-            >
-              ORDER
-            </h3>
-            <p class="mt-2 text-gray-700">
-              Pop your choice – or choices – into your basket and check out via
-              our website.
-            </p>
+          <div class="doodle-frame transform rotate-[3deg] mt-10">
+            <img src="macroon.jpg" alt="Colorful Macarons" class="w-full h-48 object-cover rounded hand-drawn-border" />
+            <p class="text-center mt-2 text-sm text-gray-600 font-medium">French Macarons</p>
           </div>
 
-          <!-- Step 3 -->
-<div class="flex flex-col items-center">
-  <div class="bg-white p-6 rounded-full shadow-md mb-4">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-12 h-12 text-pink-600"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
-      />
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
-      />
-    </svg>
+          <div class="doodle-frame transform rotate-[2deg]">
+            <img src="dounut.jpg" alt="Gourmet Donuts" class="w-full h-48 object-cover rounded hand-drawn-border" />
+            <p class="text-center mt-2 text-sm text-gray-600 font-medium">Artisan Donuts</p>
+          </div>
+
+          <div class="doodle-frame transform rotate-[-3deg] mt-10 hand-drawn-border">
+            <img src="cupcakes.jpg" alt="Delicious Cupcakes" class="w-full h-48 object-cover rounded" />
+            <p class="text-center mt-2 text-sm text-gray-600 font-medium">Sweet Cupcakes</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <h3
-    class="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide"
-  >
-    DELIVERED
-  </h3>
-  <p class="mt-2 text-gray-700">
-    Your order gets delivered to your door within time.
-  </p>
-</div>
-
-          <!-- Step 4 -->
-          <div class="flex flex-col items-center">
-            <div class="bg-white p-6 rounded-full shadow-md mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-12 h-12 text-pink-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <circle cx="12" cy="12" r="9" stroke-width="2" />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 10h.01M15 10h.01M9 15c1.5 1 4.5 1 6 0"
-                />
-              </svg>
-            </div>
-            <h3
-              class="font-['Josefin_Sans'] text-pink-700 text-lg md:text-xl font-bold tracking-wide"
-            >
-              ENJOY
-            </h3>
-            <p class="mt-2 text-gray-700">
-              The best bit! Get the kettle on and enjoy with your coffee in the
-              comfort of your home.
-            </p>
-          </div>
-        </div>
-
-        <!-- Button -->
-        <div class="text-center mt-12">
-          <button
-            id="order-button-1"
-            class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white font-bold rounded-full shadow-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-          >
-            Start Your Order <i class="bx bx-chevron-right text-xl ml-2"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================  MENU SECTION =================================== -->
-    <section
-      id="menu"
-      class="py-20 bg-gradient-to-b from-[#fde0e6] via-[#fcd5ce] to-[#fbeaf5] text-center relative overflow-hidden"
-    >
-      <h2 class="text-4xl font-bold text-[#d45b66] mb-12 relative inline-block">
-        Our Menu
-        <span
-          class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-yellow-400 rounded-full"
-        ></span>
-      </h2>
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 px-8 md:px-16 relative z-10"
-      >
-        <!-- Menu Item -->
-        <div
-          class="menu-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition duration-300 hover:-translate-y-2 relative"
-        >
-          <div
-            class="absolute top-4 right-4 w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800"
-          >
-            <i class="bx bx-cake"></i>
-          </div>
-          <img
-            src="https://images.food52.com/hCMCcgnrNaS51pbWEJUbEXkrLVo=/60a6e4b8-2765-4480-88f3-f96f73107941--2022-0607_angel-food-cake-with-strawberries-and-whipped-cream_seo_3x2_mj-kroeger-067.jpg"
-            class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
-            alt="Cake"
-          />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Cakes</h3>
-          <p class="text-sm text-gray-600 mt-2">
-            Delicious cakes for all occasions
-          </p>
-          <a href="Cake.html">
-            <button
-              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-            >
-              View Options
-            </button>
-          </a>
-        </div>
-
-        <div
-          class="menu-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition duration-300 hover:-translate-y-2 relative"
-        >
-          <div
-            class="absolute top-4 right-4 w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800"
-          >
-            <i class="bx bx-muffin"></i>
-          </div>
-          <img
-            src="https://www.recipetineats.com/tachyon/2020/09/Vanilla-Cupcakes-with-Vanilla-Swiss-Meringue-2.jpg"
-            class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
-            alt="Cupcakes"
-          />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Cupcakes</h3>
-          <p class="text-sm text-gray-600 mt-2">
-            Sweet mini treats for everyone
-          </p>
-          <a href="cupcakes.html">
-            <button
-              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-            >
-              View Options
-            </button>
-          </a>
-        </div>
-
-        <div
-          class="menu-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition duration-300 hover:-translate-y-2 relative"
-        >
-          <div
-            class="absolute top-4 right-4 w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800"
-          >
-            <i class="bx bx-cookie"></i>
-          </div>
-          <img
-            src="https://preppykitchen.com/wp-content/uploads/2020/04/French-Macarons-feature-1200.jpg"
-            class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
-            alt="Macarons"
-          />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Macarons</h3>
-          <p class="text-sm text-gray-600 mt-2">Colorful French delicacies</p>
-          <a href="macarons.html">
-            <button
-              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-            >
-              View Options
-            </button>
-          </a>
-        </div>
-
-        <div
-          class="menu-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition duration-300 hover:-translate-y-2 relative"
-        >
-          <div
-            class="absolute top-4 right-4 w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800"
-          >
-            <i class="bx bx-candles"></i>
-          </div>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkt_EWXFXveId786uh3M0BOiEm6ynenjXdZQ&s"
-            class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
-            alt="Cookies"
-          />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Cookies</h3>
-          <p class="text-sm text-gray-600 mt-2">Fun bite-sized cake treats</p>
-           <a href="cookies.html">
-            <button
-              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-            >
-              View Options
-            </button>
-          </a>
-        </div>
-
-        <div
-          class="menu-item bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transform transition duration-300 hover:-translate-y-2 relative"
-        >
-          <div
-            class="absolute top-4 right-4 w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-800"
-          >
-            <i class="bx bx-gift"></i>
-          </div>
-          <img
-            src="https://hips.hearstapps.com/hmg-prod/images/glazed-donut-recipe-1-65008ab2b45fb.jpg?crop=1xw:1xh;center,top&resize=1200:*"
-            class="rounded-lg mb-4 w-full h-40 object-cover transform transition duration-500 hover:scale-110"
-            alt="Deals"
-          />
-          <h3 class="text-xl font-semibold text-[#d45b66]">Dounut</h3>
-          <p class="text-sm text-gray-600 mt-2">
-            Exclusive offers just for you
-          </p>
-           <a href="Dounut.html">
-            <button
-              class="mt-4 px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-sm font-medium hover:bg-yellow-300 transition"
-            >
-              View Options
-            </button>
-          </a>
-        </div>
-      </div>
-
-      <div class="mt-12">
-        <button
-          id="order-button-2"
-          class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#f28c82] to-[#d45b66] text-white font-bold rounded-full shadow-lg hover:from-[#d45b66] hover:to-[#f28c82] transition-all duration-300 transform hover:scale-105"
-        >
-          Place Your Order <i class="bx bx-chevron-right text-xl ml-2"></i>
-        </button>
-      </div>
-    </section>
+</section>
 
     <!-- =======================Login Modal =======================-->
     <div id="login-modal" class="login-modal">
@@ -989,7 +1190,7 @@
         </h2>
         
         <!-- Reviews Carousel -->
-        <div class="reviews-carousel auto-scroll" id="reviews-carousel">
+        <div class="reviews-carousel" id="reviews-carousel">
           <div class="reviews-track" id="reviews-track">
             <!-- Review 1 -->
             <div class="review-card">
@@ -1113,9 +1314,106 @@
                 "The Pistachio Chocolate Cake was the highlight of our dinner party. Unique flavor combination that everyone loved!"
               </p>
             </div>
+            
+            <!-- Duplicate reviews for seamless loop -->
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Sarah M.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "The best bakery in town! Their red velvet cake is to die for. I
+                order it for every special occasion."
+              </p>
+            </div>
+
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Laiba.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "I'm addicted to their macarons! Perfect texture and just the
+                right amount of sweetness. Highly recommend!"
+              </p>
+            </div>
+
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Rida.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "Ordered a custom birthday cake and it was stunning! Not only
+                beautiful but delicious too. Will definitely order again."
+              </p>
+            </div>
+            
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Ahmed K.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "The Belgium Chocolate Cake is absolutely divine! Rich, moist, and perfectly balanced. My family loved it!"
+              </p>
+            </div>
+            
+            <div class="review-card">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center text-pink-700 mr-4">
+                  <i class="bx bxs-quote-left"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Fatima Z.</h4>
+                  <div class="flex text-yellow-400">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                "I've tried many bakeries, but Honeyed Bakery's Three Milk Cake is exceptional. Light, creamy, and not too sweet!"
+              </p>
+            </div>
           </div>
-          
-          
         </div>
       </div>
     </section>
@@ -1254,24 +1552,167 @@
     </footer>
 
     <script>
-      // Login Modal Functionality
+      // Mobile Menu Functionality
       document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeMobileMenu = document.getElementById("close-mobile-menu");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+        
+        // Toggle mobile menu
+        mobileMenuToggle.addEventListener("click", function () {
+          mobileMenu.classList.add("active");
+        });
+        
+        // Close mobile menu
+        closeMobileMenu.addEventListener("click", function () {
+          mobileMenu.classList.remove("active");
+        });
+        
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("active");
+          });
+        });
+        
+        // Mobile Carousel Functionality with Infinite Loop
+        const track = document.getElementById("mobile-track");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const indicators = document.querySelectorAll(".swipe-indicator");
+        
+        let currentIndex = 0;
+        const totalItems = document.querySelectorAll(".mobile-carousel-item").length;
+        
+        // Clone first and last items for seamless looping
+        const firstItemClone = track.firstElementChild.cloneNode(true);
+        const lastItemClone = track.lastElementChild.cloneNode(true);
+        
+        // Add clones to track
+        track.appendChild(firstItemClone);
+        track.insertBefore(lastItemClone, track.firstElementChild);
+        
+        // Adjust current index to account for the clone at the beginning
+        currentIndex = 1;
+        
+        // Update carousel position
+        function updateCarousel(animate = true) {
+          if (animate) {
+            track.style.transition = 'transform 0.5s ease';
+          } else {
+            track.style.transition = 'none';
+          }
+          
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+          
+          // Update indicators
+          let indicatorIndex = currentIndex - 1;
+          if (indicatorIndex < 0) indicatorIndex = totalItems - 1;
+          if (indicatorIndex >= totalItems) indicatorIndex = 0;
+          
+          indicators.forEach((indicator, index) => {
+            if (index === indicatorIndex) {
+              indicator.classList.add('active');
+            } else {
+              indicator.classList.remove('active');
+            }
+          });
+        }
+        
+        // Initialize carousel
+        updateCarousel(false);
+        
+        // Arrow navigation
+        prevBtn.addEventListener('click', () => {
+          currentIndex--;
+          updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+          currentIndex++;
+          updateCarousel();
+        });
+        
+        // Handle transition end to create infinite loop
+        track.addEventListener('transitionend', () => {
+          // If we're at the first clone (which is actually the last item), jump to the real last item
+          if (currentIndex === 0) {
+            track.style.transition = 'none';
+            currentIndex = totalItems;
+            updateCarousel(false);
+          }
+          // If we're at the last clone (which is actually the first item), jump to the real first item
+          else if (currentIndex === totalItems + 1) {
+            track.style.transition = 'none';
+            currentIndex = 1;
+            updateCarousel(false);
+          }
+        });
+        
+        // Touch/swipe events for mobile
+        let startX = 0;
+        let currentX = 0;
+        let isSwiping = false;
+        
+        track.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isSwiping = true;
+        });
+        
+        track.addEventListener('touchmove', (e) => {
+          if (!isSwiping) return;
+          currentX = e.touches[0].clientX;
+        });
+        
+        track.addEventListener('touchend', () => {
+          if (!isSwiping) return;
+          
+          const diff = startX - currentX;
+          
+          // Minimum swipe distance
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+              // Swipe left - go to next
+              currentIndex++;
+            } else {
+              // Swipe right - go to previous
+              currentIndex--;
+            }
+            updateCarousel();
+          }
+          
+          isSwiping = false;
+        });
+        
+        // Auto-advance carousel (optional)
+        setInterval(() => {
+          currentIndex++;
+          updateCarousel();
+        }, 4000);
+        
+        // Login Modal Functionality
         const loginModal = document.getElementById("login-modal");
         const closeLogin = document.getElementById("close-login");
-        const orderButtons = document.querySelectorAll(
-          "#order-button-1, #order-button-2"
-        );
+        const orderNavLink = document.getElementById("order-nav-link");
+        const mobileOrderLink = document.getElementById("mobile-order-link");
         const loginTabs = document.querySelectorAll(".login-tab");
         const loginForm = document.getElementById("login-form");
         const registerForm = document.getElementById("register-form");
         const switchToRegister = document.getElementById("switch-to-register");
         const switchToLogin = document.getElementById("switch-to-login");
 
-        // Show modal when order buttons are clicked
-        orderButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            loginModal.classList.add("active");
-          });
+        // Show modal when order link in navigation is clicked
+        orderNavLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginModal.classList.add("active");
+        });
+        
+        // Show modal when mobile order link is clicked
+        mobileOrderLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          loginModal.classList.add("active");
+          mobileMenu.classList.remove("active");
         });
 
         // Close modal
@@ -1369,123 +1810,6 @@
               alert("Please fill in all fields");
             }
           });
-
-      
-        
-       
-        
-        // Auto-scroll functionality
-        let autoScrollInterval = setInterval(() => {
-          currentIndex++;
-          if (currentIndex >= reviewCards.length) {
-            
-            currentIndex = 0;
-            track.style.transition = 'none';
-            updateCarousel();
-            track.offsetHeight;
-          
-            track.style.transition = 'transform 0.7s ease';
-          }
-          updateCarousel();
-        }, 3000);
-        
-        // Pause on hover
-        carousel.addEventListener('mouseenter', () => {
-          carousel.classList.add('paused');
-          clearInterval(autoScrollInterval);
-        });
-        
-        carousel.addEventListener('mouseleave', () => {
-          carousel.classList.remove('paused');
-          autoScrollInterval = setInterval(() => {
-            currentIndex++;
-            if (currentIndex >= reviewCards.length) {
-              currentIndex = 0;
-              track.style.transition = 'none';
-              updateCarousel();
-              track.offsetHeight;
-              track.style.transition = 'transform 0.5s ease';
-            }
-            updateCarousel();
-          }, 3000);
-        });
-        
-        // Dot navigation
-        dots.forEach(dot => {
-          dot.addEventListener('click', () => {
-            currentIndex = parseInt(dot.getAttribute('data-index'));
-            updateCarousel();
-            
-            // Reset auto-scroll timer
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = setInterval(() => {
-              currentIndex++;
-              if (currentIndex >= reviewCards.length) {
-                currentIndex = 0;
-                track.style.transition = 'none';
-                updateCarousel();
-                track.offsetHeight;
-                track.style.transition = 'transform 0.5s ease';
-              }
-              updateCarousel();
-            }, 3000);
-          });
-        });
-        
-        // Touch/swipe support for mobile
-        let startX = 0;
-        let currentX = 0;
-        let isDragging = false;
-        
-        track.addEventListener('touchstart', (e) => {
-          startX = e.touches[0].clientX;
-          isDragging = true;
-          track.style.transition = 'none';
-          clearInterval(autoScrollInterval);
-        });
-        
-        track.addEventListener('touchmove', (e) => {
-          if (!isDragging) return;
-          
-          currentX = e.touches[0].clientX;
-          const diff = startX - currentX;
-          
-          // Move the track while dragging
-          track.style.transform = `translateX(calc(-${currentIndex * (cardWidth + gap)}px - ${diff}px))`;
-        });
-        
-        track.addEventListener('touchend', () => {
-          if (!isDragging) return;
-          
-          isDragging = false;
-          track.style.transition = 'transform 0.5s ease';
-          
-          const diff = startX - currentX;
-          const threshold = 50;
-          
-          if (diff > threshold) {
-            // Swipe left - next
-            currentIndex = (currentIndex + 1) % reviewCards.length;
-          } else if (diff < -threshold) {
-            // Swipe right - previous
-            currentIndex = (currentIndex - 1 + reviewCards.length) % reviewCards.length;
-          }
-          
-          updateCarousel();
-          
-          // Restart auto-scroll
-          autoScrollInterval = setInterval(() => {
-            currentIndex++;
-            if (currentIndex >= reviewCards.length) {
-              currentIndex = 0;
-              track.style.transition = 'none';
-              updateCarousel();
-              track.offsetHeight;
-              track.style.transition = 'transform 0.5s ease';
-            }
-            updateCarousel();
-          }, 3000);
-        });
       });
     </script>
   </body>

@@ -357,6 +357,57 @@
       height: 100%;
       object-fit: cover;
     }
+  
+    /* ---------- Mobile Responsive Tweaks ---------- */
+
+/* For tablets and phones */
+@media (max-width: 1024px) {
+  .story-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 600px) {
+  header nav {
+    display: none; /* hide desktop nav */
+  }
+
+  header .bx-menu {
+    display: block; /* show mobile menu icon */
+  }
+
+  .menu-items {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .menu-item {
+    width: 140px;
+    height: 140px;
+  }
+
+  .menu-btn {
+    width: 80%;
+    font-size: 0.8rem;
+  }
+
+  .story-section {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .story-images img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .review-card {
+    flex: 0 0 80%;
+  }
+}
 
   </style>
 </head>
